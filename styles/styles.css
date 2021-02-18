@@ -1,0 +1,65 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+div {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#program {
+    font-size: 50px;
+}
+
+.disappear {
+    display: none;
+}
+
+img {
+    height: 700px;
+    width: auto;
+}
+
+#program {
+    height: 8rem;
+    font-weight:bold;
+}
+
+.shorten{
+    width: 20%;
+}
+
+.mtoProgram {
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.mtoProgramDate {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mtogroup {
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+textarea {
+    overflow: auto;
+}
+
+#header {
+    text-align: center;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+
+#editor, #editor1, #editor2 {
+    height: 300px;
+}
+
+#make {
+    height: 100px;
+}

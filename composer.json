@@ -1,0 +1,27 @@
+{
+  "name": "davidkislyak/localdungeons",
+  "authors": [
+    {
+      "name": "David Kislyak",
+      "email": "dkislyak@mail.greenriver.edu"
+    },
+    {
+      "name": "Nick Gadomskiy",
+      "email": "ngadomskiy09@gmail.com"
+    },
+    {
+      "name": "Ekampreet Kaur",
+      "email": "ekaur@mail.greenriver.edu"
+    },
+    {
+      "name": "Kerrie Low",
+      "email": "klow4@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["models", "classes", "controller"]
+  }
+}
