@@ -3,6 +3,7 @@
 class formData
 {
     private $_programmer;
+    private $_assy;
     private $_rtime;
     private $_model;
     private $_fwc;
@@ -34,12 +35,13 @@ class formData
     private $_Onotes;
     private $_Pnotes;
 
-    function __construct($programmer, $rtime, $model, $fwc, $media, $program, $make, $date, $ptime, $ptype, $status,
+    function __construct($programmer,$assy, $rtime, $model, $fwc, $media, $program, $make, $date, $ptime, $ptype, $status,
                          $reason, $graphic, $mcd, $buyoff, $instruction, $pnotes, $operator, $date2, $po, $machine, $shift,
                          $seq, $process, $onotes, $geometry, $signature, $sigdate, $lnotes, $sig2, $sig2date)
     {
 
         $this->_programmer = $programmer;
+        $this->_assy = $assy;
         $this->_rtime = $rtime;
         $this->_model = $model;
         $this->_fwc = $fwc;
@@ -76,6 +78,11 @@ class formData
     function getProgrammer()
     {
         return $this->_programmer;
+    }
+
+    function getAssy()
+    {
+        return $this->_assy;
     }
 
     function getProgram()
@@ -236,6 +243,11 @@ class formData
     function setProgrammer($programmer)
     {
         $this->_programmer = $programmer;
+    }
+
+    function setAssy($assy)
+    {
+        $this->_assy = $assy;
     }
 
     function setProgram($program)

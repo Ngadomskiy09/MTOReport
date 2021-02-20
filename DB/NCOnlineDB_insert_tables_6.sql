@@ -3,7 +3,7 @@ CREATE TABLE mto.Test
   formID INT NOT NULL AUTO_INCREMENT,
   Programmer VARCHAR(255) NULL,
   Assy INT(25) NULL,
-  Runtime TIME NULL,
+  Runtime VARCHAR(10),
   Model VARCHAR(20) NULL,
   FWC VARCHAR(6) NULL,
   Media VARCHAR(25) NULL,

@@ -29,6 +29,7 @@ class Routes
             // Add Data to hive
             $this->_f3->set('sequences',$this->_dbh->showSequence($id));
             $this->_f3->set('programmer', $grab['Programmer']);
+            $this->_f3->set('assy', $grab['Assy']);
             $this->_f3->set('rtime', $grab['Runtime']);
             $this->_f3->set('model', $grab['Model']);
             $this->_f3->set('fwc', $grab['FWC']);
@@ -75,6 +76,7 @@ class Routes
             // Get Data from from
             //$grab = $grab[0];
             $programmer = $_POST['programmer'];
+            $assy = $_POST['assy'];
             $rtime = $_POST['rtime'];
             $model = $_POST['model'];
             $fwc = $_POST['fwc'];
@@ -117,6 +119,7 @@ class Routes
 
             // Add Data to hive
             $this->_f3->set('programmer', $programmer);
+            $this->_f3->set('assy', $assy);
             $this->_f3->set('rtime', $rtime);
             $this->_f3->set('model', $model);
             $this->_f3->set('fwc', $fwc);
@@ -159,6 +162,7 @@ class Routes
 
             // Write Data to session
             $_SESSION['programmer'] = $programmer;
+            $_SESSION['assy'] = $assy;
             $_SESSION['rtime'] = $rtime;
             $_SESSION['model'] = $model;
             $_SESSION['fwc'] = $fwc;
@@ -198,7 +202,7 @@ class Routes
             $_SESSION['Lnotes'] = $lnotes;
             $_SESSION['sig2'] = $sig2;
             $_SESSION['sig2date'] = $sig2date;
-            $_SESSION['info'] = new formData ($_POST['programmer'], $_POST['rtime'], $_POST['model'], $_POST['fwc'],
+            $_SESSION['info'] = new formData ($_POST['programmer'], $_POST['assy'], $_POST['rtime'], $_POST['model'], $_POST['fwc'],
                 $_POST['media'], $_POST['program'], $_POST['make'], $_POST['date'],
                 $_POST['ptime'], $_POST['ptype'], $_POST['status'], $_POST['reason'], $_POST['graphic'], $_POST['mcd'],
                 $_POST['buyoff'], $_POST['instruction'], $_POST['Pnotes'], $_POST['operator'], $_POST['date2'], $_POST['po'],
@@ -213,7 +217,7 @@ class Routes
                 $this->_dbh->DataUpdate($id);
                 $this->_dbh->setFirstPartMtoRun($id);
             }
-            $this->_f3->reroute('/summary');
+            $this->_f3->reroute('/');
 
 
         }
@@ -344,11 +348,5 @@ class Routes
     function removeData()
     {
         $this->_dbh->deleteFullForm($_POST['dataRemoval']);
-    }
-
-    function logout()
-    {
-        $views = new Template();
-        echo $views->render("loginpage.html");
     }
 }

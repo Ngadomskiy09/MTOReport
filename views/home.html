@@ -18,7 +18,7 @@
     <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
 
 
-<title>Home - NC Document Online</title>
+<title>Home - MTO Report</title>
 </head>
 <body>
 <include href="views/header.html">
@@ -27,82 +27,79 @@
 
 <form id="info" action="#" method="post" enctype="multipart/form-data">
 <div class="container">
-    <div class="form-group">
+    <div class="form-group" id="heading">
         <!--Input Values to start the form-->
             <label for="programmer"><strong>Programmer: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="programmer" type="text" class="form-control" name="programmer" value="{{ @programmer}}">
+                <input id="programmer" type="text" class="form-control" name="programmer" value="{{ @programmer}}">
             </label>
             <check if="{{ @errors['programmer'] }}">
                 <span class="err">{{ @errors['programmer'] }}</span>
             </check>
 
             <label for="assy"><strong>Assy #: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="assy" type="text" class="form-control" name="assy" value="{{ @assy}}">
+                <input id="assy" type="text" class="form-control" name="assy" value="{{ @assy}}" size="10">
             </label>
             <check if="{{ @errors['assy'] }}">
                 <span class="err">{{ @errors['assy'] }}</span>
             </check>
 
             <label for="rtime"><strong>Runtime: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="rtime" type="text" class="form-control" name="rtime" value="{{ @rtime}}">
+                <input id="rtime" type="text" class="form-control" name="rtime" value="{{ @rtime}}" placeholder="ex: 540 min">
             </label>
             <check if="{{ @errors['rtime'] }}">
                 <span class="err">{{ @errors['rtime'] }}</span>
             </check>
 
             <label for="model"><strong>Model: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="model" type="text" class="form-control" name="model" value="{{ @model}}">
+                <input id="model" type="text" class="form-control" name="model" value="{{ @model}}" size="10">
             </label>
             <check if="{{ @errors['model'] }}">
                 <span class="err">{{ @errors['model'] }}</span>
             </check>
 
             <label for="fwc"><strong>FWC: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="fwc" type="text" class="form-control" name="fwc" value="{{ @fwc}}">
+                <input id="fwc" type="text" class="form-control" name="fwc" value="{{ @fwc}}" size="10">
             </label>
             <check if="{{ @errors['fwc'] }}">
                 <span class="err">{{ @errors['fwc'] }}</span>
             </check>
 
             <label for="media"><strong>Media File: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="media" type="text" class="form-control" name="media" value="{{ @media}}">
+                <input id="media" type="text" class="form-control" name="media" value="{{ @media}}">
             </label>
             <check if="{{ @errors['media'] }}">
                 <span class="err">{{ @errors['media'] }}</span>
             </check>
         </div>
 
-        <div class="form-group border">
+        <div class="form-group border" id="part">
             <label class="col-sm-8" for="program"><strong>Program Number: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="program" type="text" class="form-control" name="program" value="{{ @program}}">
+                <input id="program" type="text" class="form-control" name="program" value="{{ @program}}">
             </label>
 
-            <label class="col-sm-2" for="make"><strong>Used to Make: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="make" type="text" class="form-control" name="make" value="{{ @make}}">
+            <label class="make" for="make"><strong>Used to Make: </strong>
+                <textarea id="make" class="form-control" name="make" placeholder="Used to Make...">{{@make}}</textarea>
             </label>
 
             <label class="col-sm-3" for="date"><strong>Program Date: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="date" type="date" class="form-control" name="date" value="{{ @date}}">
+                <input id="date" type="date" class="form-control" name="date" value="{{ @date}}">
             </label>
 
             <label class="col-sm-2" for="ptime"><strong>Program Time: </strong>
-                <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="ptime" type="text" class="form-control" maxlength="8" name="ptime" value="{{ @ptime}}">
+                <input id="ptime" type="text" class="form-control" maxlength="8" name="ptime" value="{{ @ptime}}">
             </label>
 
             <label class="col-sm-2" for="ptype"><strong>Program Type: </strong>
-                <input  <check if="@SESSION.permission != 'Pro'">readonly</check> id="ptype" type="text" class="form-control" name="ptype" placeholder="Ex. MTO 1" value="{{ @ptype }}">
+                <input id="ptype" type="text" class="form-control" name="ptype" placeholder="Ex. MTO 1" value="{{ @ptype }}">
             </label>
 
             <!--Dropdown values pulled from array of options-->
             <label><strong>Status: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="status" class="form-control">
+                <select name="status" class="form-control">
                     <repeat group="{{ @stat }}" value="{{ @status }}">
                                 <option value="{{ @status }}"
                                         <check if="{{ @stats == @status }}">
                                             selected = "selected"
-                                        </check>
-                                        <check if="@SESSION.permission != 'Pro'">
-                                            class="disappear"
                                         </check>
                                 >{{ @status }}
                         </repeat>
@@ -112,18 +109,15 @@
 
         <h3 class="text-lg-center"><strong>Programmer's MTO Instructions</strong></h3>
 
-        <div class="form-group text-center">
+        <div class="form-group" id="instruct">
 
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Reason For Revision: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="reason" class="form-control col-sm-auto" onchange='CheckReason(this.value);'>
+            <label class="col-sm-auto"><strong>Reason For Revision: </strong>
+                <select name="reason" class="form-control" onchange='CheckReason(this.value);'>
                     <repeat group="{{ @reasons }}" value="{{ @reason }}">
                         <option value="{{ @reason }}"
                                 <check if="{{ @reason4 == @reason }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @reason }}
                     </repeat>
@@ -133,15 +127,12 @@
             <!--<input type="text" name="reason" class="form-control" id="reason" placeholder="SAT#"style='display:none;' maxlength="20" />-->
 
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Graphic Check: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check>  name="graphic" class="form-control col-sm-auto" onchange='CheckNCPSR(this.value);'>
+            <label class="col-sm-auto"><strong>Graphic Check: </strong>
+                <select name="graphic" class="form-control" onchange='CheckNCPSR(this.value);'>
                     <repeat group="{{ @graphics }}" value="{{ @graphic }}">
                         <option value="{{ @graphic }}"
                                 <check if="{{ @graph == @graphic }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @graphic }}
                     </repeat>
@@ -150,15 +141,12 @@
             <!--<input type="text" name="graphic" class="form-control" id="graphic"  placeholder="NCPSR#"style='display:none;' maxlength="20" />-->
 
             <!--Dropdown values pulled from array of options-->
-            <label><strong>MCD Compare: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check>  name="mcd" class="form-control col-sm-auto">
+            <label class="col-sm-auto"><strong>MCD Compare: </strong>
+                <select name="mcd" class="form-control">
                     <repeat group="{{ @mcds }}" value="{{ @mcd }}">
                         <option value="{{ @mcd }}"
                                 <check if="{{ @mc == @mcd }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @mcd }}
                     </repeat>
@@ -166,33 +154,25 @@
             </label>
 
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Previous Buy-Off: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="buyoff" class="form-control col-sm-auto">
+            <label class="col-sm-auto"><strong>Previous Buy-Off: </strong>
+                <select id="buyoff" name="buyoff" class="form-control">
                     <repeat group="{{ @buyoffs }}" value="{{ @buyoff }}">
                         <option value="{{ @buyoff }}"
                                 <check if="{{ @bf == @buyoff }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @buyoff }}
                     </repeat>
                 </select>
             </label>
 
-            <br>
-
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Programmer's MTO Instructions: </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="instruction" class="form-control col-sm-auto">
+            <label class="col-sm-auto"><strong>Programmer's MTO Instructions: </strong>
+                <select name="instruction" class="form-control">
                     <repeat group="{{ @instructions }}" value="{{ @instruction }}">
                         <option value="{{ @instruction }}"
                                 <check if="{{ @instruct == @instruction }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @instruction }}
                     </repeat>
@@ -203,70 +183,58 @@
         <!--Textarea for user to place notes-->
         <label class="col-sm-12" for="Pnotes" ><strong>Programmers Notes: </strong>
             <div id="editor">
-                <textarea <check if="@SESSION.permission != 'Pro'">readonly</check> id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@pronotes}}</textarea>
+                <textarea id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@pronotes}}</textarea>
             </div>
         </label>
-        <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
+
+        <hr>
 
         <div class="form-group">
-            <!--buttons to add more operators if needed-->
+            <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
             <div id="ops">
-<!--                <label class="col-sm-auto"><strong>ADD</strong>-->
-<!--                    <button id="plus" type="button" class="form-control" name="plus" value="plus">+</button>-->
-<!--                    <button id="minus" type="button" class="form-control" name="minus" value="minus">-</button>-->
-<!--                </label>-->
-                <div><!--  data-count="1"-->
-                    <label class="col-sm-auto" for="operator"><strong>Operator's Name: </strong>
-                        <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
+                    <label for="operator"><strong>Operator's Name: </strong>
+                        <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
                     </label>
 
-                    <label class="col-sm-auto" for="date2"><strong>Date: </strong>
-                        <input <check if="@SESSION.permission != 'Pro'">readonly</check>  id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
+                    <label for="date2"><strong>Date: </strong>
+                        <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
                     </label>
 
-                    <label class="col-sm-auto" for="po"><strong>P/O #: </strong>
-                        <input <check if="@SESSION.permission != 'Pro'">readonly</check>  id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
+                    <label for="po"><strong>P/O #: </strong>
+                        <input id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
                     </label>
 
-                    <label class="col-sm-auto" for="machine"><strong>Machine #: </strong>
-                        <input <check if="@SESSION.permission != 'Pro'">readonly</check>  id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
+                    <label for="machine"><strong>Machine #: </strong>
+                        <input id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
                     </label>
 
                     <!--Dropdown values pulled from array of options-->
                     <label><strong>Shift: </strong>
-                        <select <check if="@SESSION.permission != 'Pro'">readonly</check>  id="shift" name="shift" class="form-control ope">
+                        <select id="shift" name="shift" class="form-control ope">
                             <repeat group="{{ @shifts }}" value="{{ @shift }}">
                                 <option value="{{ @shift }}"
                                         <check if="{{ @shi == @shift }}">
                                             selected = "selected"
-                                        </check>
-                                        <check if="@SESSION.permission != 'Pro'">
-                                            class="disappear"
                                         </check>
                                 >{{ @shift }}
                             </repeat>
                         </select>
                     </label>
 
-                    <label class="col-sm-auto" for="seq"><strong>Seq. from/to: </strong>
-                        <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
+                    <label for="seq"><strong>Seq. from/to: </strong>
+                        <input id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
                     </label>
-                    <hr>
-                </div>
             </div>
 
             <hr>
-
+            <br>
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Milling Process acceptable? </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="process" class="form-control ope">
+            <label id="millPro"><strong>Milling Process acceptable? </strong>
+                <select name="process" class="form-control ope">
                     <repeat group="{{ @processes }}" value="{{ @process }}">
                         <option value="{{ @process }}"
                                 <check if="{{ @pro == @process }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @process }}</option>
                     </repeat>
@@ -276,77 +244,64 @@
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
                 <div id="editor1">
-                    <textarea <check if="@SESSION.permission != 'Pro'">readonly</check> id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@opernotes}}</textarea>
+                    <textarea id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@opernotes}}</textarea>
                 </div>
             </label>
+            <hr>
+            <br>
 
             <h3 class="text-lg-center"><strong>Layout First Part Check Report</strong></h3>
 
             <!--Dropdown values pulled from array of options-->
-            <label><strong>Geometry acceptable? </strong>
-                <select <check if="@SESSION.permission != 'Pro'">readonly</check> name="geometry" class="form-control lay">
+            <label id="geo"><strong>Geometry acceptable? </strong>
+                <select name="geometry" class="form-control lay">
                     <repeat group="{{ @geometrys }}" value="{{ @geometry }}">
                         <option value="{{ @geometry }}"
                                 <check if="{{ @geo == @geometry }}">
                                     selected = "selected"
-                                </check>
-                                <check if="@SESSION.permission != 'Pro'">
-                                    class="disappear"
                                 </check>
                         >{{ @geometry }} </option>
                     </repeat>
                 </select>
             </label>
 
-            <label class="col-sm-auto" for="signature"><strong>Signature: </strong>
-                <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="signature" type="text" class="form-control lay" name="signature" value="{{ @signature}}">
-            </label>
+            <span class="sig">
+                <label for="signature"><strong>Signature: </strong>
+                    <input id="signature" type="text" class="form-control lay" name="signature" value="{{ @signature}}">
+                </label>
 
-            <label class="col-sm-auto" for="sigdate"><strong>Date: </strong>
-                <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="sigdate" type="date" class="form-control lay" name="sigdate" value="{{ @sigdate}}">
-            </label>
+                <label for="sigdate"><strong>Date: </strong>
+                    <input id="sigdate" type="date" class="form-control lay" name="sigdate" value="{{ @sigdate}}">
+                </label>
+            </span>
 
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
                 <div id="editor2">
-                    <textarea <check if="@SESSION.permission != 'Pro'">readonly</check> id="Lnotes" name="Lnotes" rows="10" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
+                    <textarea id="Lnotes" name="Lnotes" rows="10" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
                 </div>
             </label>
         </div>
+        <hr>
 
         <h3 class="text-lg-center"><strong>Shop Approval For Production</strong></h3>
 
-        <label class="col-sm-auto" for="sig2"><strong>Signature: </strong>
-            <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}">
-        </label>
+        <div class="shop">
+            <label class="col-sm-auto" for="sig2"><strong>Signature: </strong>
+                <input id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}">
+            </label>
 
-        <label class="col-sm-auto" for="sig2date"><strong>Date: </strong>
-            <input <check if="@SESSION.permission != 'Pro'">readonly</check> id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}">
-        </label>
+            <label class="col-sm-auto" for="sig2date"><strong>Date: </strong>
+                <input id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}">
+            </label>
 
-        <label class="col-sm-auto" for="cmes">
-            <button id="cmes" type="button" class="form-control btn-secondary" name="cmes" value="cmes">CMES</button>
-        </label>
+            <label class="col-sm-auto" for="email">
+                <button id="email" type="button" class="form-control btn-secondary" name="email" value="email">email</button>
+            </label>
+        </div>
 
-        <label class="col-sm-auto" for="qAlert">
-            <button id="qAlert" type="button" class="form-control btn-secondary" name="qAlert" value="qAlert">Q Alert</button>
-        </label>
-
-        <label class="col-sm-auto" for="ednc">
-            <button id="ednc" type="button" class="form-control btn-secondary" name="ednc" value="ednc">eDNC</button>
-        </label>
-
-        <label class="col-sm-auto" for="mtoreport">
-            <a href="/mtoreport/{{@SESSION.formID}}"><button id="mtoreport" type="button" class="form-control btn-secondary" name="mtoreport" value="mtoreport">MTO report</button></a>
-        </label>
-
-        <label class="col-sm-auto" for="email">
-            <button id="email" type="button" class="form-control btn-secondary" name="email" value="email">email</button>
-        </label>
-
-        <br>
         <hr>
-
+        <br>
 
         <h4 class="text-lg-center"><strong>Sequence Table</strong></h4>
 
@@ -354,87 +309,106 @@
         <div class="all-sequences form-group border p-3" data-formid="{{@SESSION.formID}}">
             <repeat group="{{@sequences}}" value="{{@sequence}}">
                 <div class="block" data-id = "{{@sequence['tooling_sequence_id']}}">
-                    <div>
-                        <h2>Sequence #{{@sequence['tooling_sequence_id']}}</h2>
 
                         <div class="row">
-                            <label class="col-sm-12 " for="seq{{@sequence['tooling_sequence_id']}}">Seq#
-                                <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="text" data-input="9" class="saveInfo form-control shorten" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
+                            <label class="sq col-sm-2" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
+                                <input type="text" data-input="9" class="saveInfo form-control seq" data-column="seq_num" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                             </label>
+                            <span>
+                                <label class="col-sm-3" for="tool{{@sequence['tooling_sequence_id']}}"><strong>Tool#1</strong>
+                                    <input type="text" data-input="0" class="saveInfo form-control" data-column="tool_num_1" maxlength="5" id="tool{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_1']}}" name="tool">
+                                </label>
 
-                        <label class="col-sm-3" for="tool{{@sequence['tooling_sequence_id']}}">Tool#1
-                            <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="text" data-input="0" class="saveInfo form-control" data-column="tool_num_1" maxlength="5" id="tool{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_1']}}" name="tool">
-                        </label>
+                                <label class="col-sm-8" for="desc{{@sequence['tooling_sequence_id']}}"><strong>Description</strong>
+                                    <input type="text" data-input="1" class="saveInfo form-control" data-column="tool_description_1" id="desc{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_1']}}" name="desc">
+                                </label>
 
-                        <label class="col-sm-8" for="desc{{@sequence['tooling_sequence_id']}}">Description
-                            <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="text" data-input="1" class="saveInfo form-control" data-column="tool_description_1" id="desc{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_1']}}" name="desc">
-                        </label>
+                                <label class="col-sm-3" for="tool1{{@sequence['tooling_sequence_id']}}"><strong>Tool#2</strong>
+                                    <input type="text" data-input="2" class="saveInfo form-control"data-column="tool_num_2" maxlength="5"  id="tool1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_2']}}" name="tool1">
+                                </label>
 
-                        <label class="col-sm-3" for="tool1{{@sequence['tooling_sequence_id']}}">Tool#2
-                            <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="text" data-input="2" class="saveInfo form-control"data-column="tool_num_2" maxlength="5"  id="tool1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_2']}}" name="tool1">
-                        </label>
+                                <label class="col-sm-8" for="desc1{{@sequence['tooling_sequence_id']}}"><strong>Description</strong>
+                                    <input type="text" data-input="3" class="saveInfo form-control" data-column="tool_description_2" id="desc1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_2']}}" name="desc1">
+                                </label>
+                            </span>
 
-                        <label class="col-sm-8" for="desc1{{@sequence['tooling_sequence_id']}}">Description
-                            <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="text" data-input="3" class="saveInfo form-control" data-column="tool_description_2" id="desc1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_2']}}" name="desc1">
-                        </label>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
 
-                            <input <check if="@SESSION.permission != 'Pro'">disabled</check> type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
+                            <input class="col-sm-3" type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
                             <check if = '{{!isset(@sequence["file_url"])}}'>
                                 <true><img src="" alt="random programming image" class="disappear"></true>
-                                <false><img src="../images/{{@sequence['file_url']}}" id='seqImage{{@sequence["tooling_sequence_id"]}}' alt="random programming image">
-                                    <i class="glyphicon glyphicon-remove"></i></false>
+                                <false><img src="../images/{{@sequence['file_url']}}" id='seqImage{{@sequence["tooling_sequence_id"]}}' alt="random programming image"></false>
                             </check>
 
-                        <label class="col-sm-12" for="pronotes{{@sequence['tooling_sequence_id']}}"><strong>Programmers Notes: </strong>
-                            <textarea <check if="@SESSION.permission != 'Pro'">readonly</check>  data-input="4" id="pronotes{{@sequence['tooling_sequence_id']}}" name="pronotes" data-column="programmers_notes" rows="5" maxlength="3000" class="saveInfo form-control" placeholder="...">{{@sequence['programmers_notes']}}</textarea>
-                        </label>
-                        <br>
 
-                        <label class="col-sm-12" for="opernotes{{@sequence['tooling_sequence_id']}}"><strong>Operator Notes: </strong>
-                            <textarea <check if="@SESSION.permission != 'Pro'">readonly</check>  data-input="5" id="opernotes{{@sequence['tooling_sequence_id']}}" name="opernotes" data-column="operators_notes" rows="5" maxlength="3000" class="saveInfo form-control ope" placeholder="...">{{@sequence['operators_notes']}}</textarea>
-                        </label>
+                            <br>
+                            <br>
 
-                        <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
-                            <textarea <check if="@SESSION.permission != 'Pro'">readonly</check>  data-input="6" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
-                        </label>
+                            <label class="col-sm-12" for="pronotes{{@sequence['tooling_sequence_id']}}"><strong>Programmers Notes: </strong>
+                                <div id="editor3">
+                                    <textarea data-input="4" id="pronotes{{@sequence['tooling_sequence_id']}}" name="pronotes" data-column="programmers_notes" rows="5" maxlength="3000" class="saveInfo form-control" placeholder="...">{{@sequence['programmers_notes']}}</textarea>
+                                </div>
+                            </label>
+                            <br>
+
+                            <label class="col-sm-12" for="opernotes{{@sequence['tooling_sequence_id']}}"><strong>Operator Notes: </strong>
+                                <div id="editor4">
+                                    <textarea data-input="5" id="opernotes{{@sequence['tooling_sequence_id']}}" name="opernotes" data-column="operators_notes" rows="5" maxlength="3000" class="saveInfo form-control ope" placeholder="...">{{@sequence['operators_notes']}}</textarea>
+                                </div>
+                            </label>
+
+                            <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
+                                <div id="editor5">
+                                    <textarea data-input="6" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
+                                </div>
+                            </label>
                         </div>
 
                         <div>
-                        <label for="rpmran{{@sequence['tooling_sequence_id']}}">F/R and RPM ran @100%
-                            <input <check if="@SESSION.permission != 'Pro'">readonly</check> type="checkbox" data-input="7" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo"
-                            <check if="{{@sequence['fr_rpm_100'] == 1}}">checked</check>>
-                        </label>
+                            <label><strong>MTO Status: </strong>
+                                <select class="form-control saveInfo" data-column="tooling_mto_status" data-input="8">
+                                    <repeat group="{{@mtostat}}" value="{{@mto}}">
+                                        <option value="{{@mto}}"
+                                        <check if="{{@sequence['tooling_mto_status'] === @mto}}">selected</check>
+                                        > {{@mto}} </option>
+                                    </repeat>
+                                </select>
+                            </label>
 
-                        <label><strong>MTO Status: </strong>
-                            <select <check if="@SESSION.permission != 'Pro'">readonly</check> class="form-control saveInfo" data-column="tooling_mto_status" data-input="8">
-                                <repeat group="{{@mtostat}}" value="{{@mto}}">
-                                    <option value="{{@mto}}"
-                                    <check if="{{@sequence['tooling_mto_status'] === @mto}}">selected</check>
-                                    <check if="@SESSION.permission != 'Pro'">class="disappear"</check>
-                                    > {{@mto}} </option>
-                                </repeat>
-                            </select>
-                        </label>
+                            <br>
+
+                            <label for="rpmran{{@sequence['tooling_sequence_id']}}">F/R and RPM ran @100%
+                                <input type="checkbox" data-input="7" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo">
+                                <check if="{{@sequence['fr_rpm_100'] == 1}}">checked</check>
+                            </label>
                         </div>
 
                         <hr>
-                    </div>
                 </div>
             </repeat>
         </div>
 
-    <button <check if="@SESSION.permission != 'Pro'">disabled</check> id="addsequence" type="button" class="btn btn-primary">Add Sequence</button>
-    <button <check if="@SESSION.permission != 'Pro'">disabled</check> id="removesequence" type="button" class="btn btn-primary">Remove last Sequence</button>
-    <button <check if="@SESSION.permission != 'Pro'">disabled</check> id="save" type="button" class="btn btn-primary">Save</button>
+        <div class="buttons">
+            <button id="addsequence" type="button" class="btn btn-primary">Add Sequence</button>
+            <button id="removesequence" type="button" class="btn btn-primary">Remove last Sequence</button>
+            <button id="save" type="button" class="btn btn-primary">Save Sequence</button>
+        </div>
 
     <br>
 
-    <div>
-        <button type="submit" class="btn btn-primary btn-block btn-lg" value="next" id="next">Save</button>
-    </div>
-    <a class="btn btn-danger mb-4 align-content-end" type="button" value="Log Out" href="../models/logout.php">Log Out</a>
-    </div>
+    <span>
+        <button type="submit" class="btn btn-primary btn-lg col-sm-9" value="next" id="next">Save</button>
+        <button id="print" type="button" class="btn btn-primary btn-lg col-sm-2" onclick="window.print()">Print Page</button>
+    </span>
+</div>
 </form>
+
 
 
 <!-- Optional JavaScript -->

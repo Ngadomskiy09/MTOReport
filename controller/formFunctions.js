@@ -239,3 +239,22 @@ $( document ).ready(function() {
         theme: 'snow'
     });
 });
+
+$( document ).ready(function() {
+    var quill = new Quill('#editor3', {
+        theme: 'snow'
+    });
+});
+
+$( document ).ready(function() {
+    var quill = new Quill('#editor4', {
+        theme: 'snow'
+    });
+});
+
+$( document ).ready(function() {
+    var quill = new Quill('#editor5', {
+        theme: 'snow'
+    });
+});
+

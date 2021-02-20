@@ -9,7 +9,7 @@ div {
 }
 
 #program {
-    font-size: 50px;
+    font-size: 70px;
 }
 
 .disappear {
@@ -24,10 +24,6 @@ img {
 #program {
     height: 8rem;
     font-weight:bold;
-}
-
-.shorten{
-    width: 20%;
 }
 
 .mtoProgram {
@@ -60,6 +56,45 @@ textarea {
     height: 300px;
 }
 
-#make {
+#editor3, #editor4, #editor5 {
     height: 100px;
 }
+
+#heading, #part, #instruct, #ops, .shop, .buttons {
+    text-align: center;
+}
+
+#millPro, #geo {
+    margin-left: 30px;
+    text-align: center;
+}
+
+.sig {
+    float: right;
+    margin-right: 30px;
+    text-align: center;
+}
+
+#buyoff {
+    padding-right: 20px;
+}
+
+.sq {
+    font-size: xx-large;
+}
+
+.seq {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#make {
+    margin-top: -50px;
+    height: 80px;
+}
+
+#print {
+    float: right;
+}
+
+
