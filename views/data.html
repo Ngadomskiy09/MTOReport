@@ -8,9 +8,11 @@
     <!-- Bootstrap CSS -->
 
     <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
 
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
 
@@ -18,9 +20,24 @@
 </head>
 
 <body>
-<include href="views/header.html">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark display-7">
+    <ul class="navbar-nav mr-auto mr-2 mt-lg-0">
+        <li>
+            <!--<a class="nav-link text-left" href="https://klow.greenriverdev.com/355/NC-Document-Online/data">Form Database</a>-->
+            <a class="nav-link text-left" href="/">Form Database</a>
+        </li>
+    </ul>
+</nav>
 
 <div class="container main">
+    <div class="jumbotron" style="text-align: center">
+        <h1 class="display-2 head"><strong>MTO Report Data</strong></h1>
+        <p class="lead">MTO Document</p>
+    </div>
+</div>
+
+
+<div class="container main" style="background: white">
     <div>
         <a href="/home/0"><button type="button" class="btn btn-primary" style="float: right">Create New Report</button></a>
     </div>

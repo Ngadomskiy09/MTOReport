@@ -45,6 +45,18 @@ class Database
 
     }
 
+    function insertOps()
+    {
+        $dataObj = $_SESSION['info'];
+
+        $sql = "INSERT INTO mto.First_part_mto_run VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->execute([$this->_dbh->lastInsertId(), $dataObj->getOperator(), $dataObj->getDate2(), $dataObj->getPo(), $dataObj->getMachine(), $dataObj->getShift(),
+            $dataObj->getSeq()]);
+    }
+
     function getOperators($formID)
     {
         $sql = "SELECT * FROM mto.Test INNER JOIN first_part_mto_run ON Test.formID = first_part_mto_run.formID";

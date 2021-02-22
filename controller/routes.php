@@ -213,6 +213,7 @@ class Routes
 
             if ($id == 0) {
                 $this->_dbh->insertData();
+                $this->_dbh->insertOps();
             } else {
                 $this->_dbh->DataUpdate($id);
                 $this->_dbh->setFirstPartMtoRun($id);
@@ -262,35 +263,37 @@ class Routes
                             </label>
                   
 
-                    <label class=\"col-sm-3\" for=\"tool$value\">Tool#1
-                        <input type=\"text\" data-input=\"0\" class=\"saveInfo form-control\" data-column=\"tool_num_1\" maxlength=\"5\" id=\"tool$value\" name=\"tool\">
-                    </label>
-
-                    <label class=\"col-sm-8\" for=\"desc$value\">Description
-                        <input type=\"text\" data-input=\"1\" class=\"saveInfo form-control\" data-column=\"tool_description_1\" id=\"desc$value\" name=\"desc\">
-                    </label>
-
-
-                    <label class=\"col-sm-3\" for=\"tool1$value\">Tool#2
-                        <input type=\"text\" data-input=\"2\" class=\"saveInfo form-control\" data-column=\"tool_num_2\" maxlength=\"5\"  id=\"tool1$value\" name=\"tool1\">
-                    </label>
-
-                    <label class=\"col-sm-8\" for=\"desc1$value\">Description
-                        <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control\" data-column=\"tool_description_2\" id=\"desc1$value\" name=\"desc1\">
-                    </label>
-
-                    <label class=\"col-sm-12\" for=\"pronotes$value\"><strong>Programmers Notes: </strong>
-                        <textarea id=\"pronotes$value\" data-input=\"4\" data-column=\"programmers_notes\" name=\"pronotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
-                    </label>
-                    <br>
-
-                    <label class=\"col-sm-12 for=\"opernotes$value\"><strong>Operator Notes: </strong>
-                        <textarea id=\"opernotes$value\" data-input=\"5\" data-column=\"operators_notes\" name=\"opernotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
-                    </label>
-
-                    <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
-                        <textarea id=\"mtocomments$value\" data-input=\"6\" data-column=\"mto_comments\" name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
-                    </label>
+                        <label class=\"col-sm-3\" for=\"tool$value\">Tool#1
+                            <input type=\"text\" data-input=\"0\" class=\"saveInfo form-control\" data-column=\"tool_num_1\" maxlength=\"5\" id=\"tool$value\" name=\"tool\">
+                        </label>
+    
+                        <label class=\"col-sm-8\" for=\"desc$value\">Description
+                            <input type=\"text\" data-input=\"1\" class=\"saveInfo form-control\" data-column=\"tool_description_1\" id=\"desc$value\" name=\"desc\">
+                        </label>
+    
+    
+                        <label class=\"col-sm-3\" for=\"tool1$value\">Tool#2
+                            <input type=\"text\" data-input=\"2\" class=\"saveInfo form-control\" data-column=\"tool_num_2\" maxlength=\"5\"  id=\"tool1$value\" name=\"tool1\">
+                        </label>
+    
+                        <label class=\"col-sm-8\" for=\"desc1$value\">Description
+                            <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control\" data-column=\"tool_description_2\" id=\"desc1$value\" name=\"desc1\">
+                        </label>
+    
+                        <label class=\"col-sm-12\" for=\"pronotes$value\"><strong>Programmers Notes: </strong>
+                            <div id=\"editor3\">
+                                <textarea id=\"pronotes$value\" data-input=\"4\" data-column=\"programmers_notes\" name=\"pronotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
+                            </div>
+                        </label>
+                        <br>
+    
+                        <label class=\"col-sm-12\" for=\"opernotes$value\"><strong>Operator Notes: </strong>
+                            <textarea id=\"opernotes$value\" data-input=\"5\" data-column=\"operators_notes\" name=\"opernotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
+                        </label>
+    
+                        <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
+                            <textarea id=\"mtocomments$value\" data-input=\"6\" data-column=\"mto_comments\" name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
+                        </label>
                      </div>
 
                     <label for=\"rpmran$value\">F/R and RPM ran @100%
