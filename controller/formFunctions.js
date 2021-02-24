@@ -34,28 +34,19 @@ jQuery(document).delegate('a.delete-record', 'click', function (e) {
 });
 
 
-$('.opData').on('click',function(){
+$(document).ready(function(){
+    $("#opInfo").html('');
+    id = $('#vip').data('vip');
 
-    if($(".opData").html() ==="show info"){
-        $("#opInfo").html('');
-        id = $(this).data('id');
-
-        $.post('/getops',{
-            id: id
-        }).done(function(data){
-            console.log(data);
-            $('#opInfo').append(data);
-            $('#opData').DataTable();
-            $('#opData').removeClass("hidden");
-            $('#opData_wrapper').removeClass("hidden");
-            $(".opData").html("hide info");
-        });
-    }
-    else{
-        $("#opInfo").html('');
-        $('#opData_wrapper').addClass("hidden");
-        $(".opData").html("show info");
-    }
+    $.post('/getops',{
+        id: id
+    }).done(function(data) {
+        $('#opInfo').append(data);
+        $('#opData').DataTable();
+        $('#opData').removeClass("hidden");
+        $('#opData_wrapper').removeClass("hidden");
+        $(".opData").html("hide info");
+    });
 });
 
 // the next four function copy inputs to other fields
@@ -93,7 +84,7 @@ $(function () {
 
 function CheckReason(val) {
     var element = document.getElementById('reason');
-    if (val == 'pick a reason' || val == 'SAT')
+    if (val === 'pick a reason' || val === 'SAT')
         element.style.display = 'block';
     else
         element.style.display = 'none';
@@ -101,7 +92,7 @@ function CheckReason(val) {
 
 function CheckNCPSR(val) {
     var element = document.getElementById('graphic');
-    if (val == 'pick a graphic' || val == 'NCPSR')
+    if (val === 'pick a graphic' || val === 'NCPSR')
         element.style.display = 'block';
     else
         element.style.display = 'none';
@@ -135,6 +126,7 @@ $("#addsequence").on("click", function () {
             $(".all-sequences").append(data);
         })
     }
+
 
 });
 
@@ -222,39 +214,13 @@ $("body").on("change", "#delete", function() {
     })
 });
 
-$( document ).ready(function() {
-    var quill = new Quill('#editor', {
-        theme: 'snow'
-    });
-});
+textarea();
 
-$( document ).ready(function() {
-    var quill = new Quill('#editor1', {
-        theme: 'snow'
-    });
-});
+function textarea() {
+    var textEditors = document.getElementsByClassName("editor");
+    for (let i = 0; i < textEditors.length; i++) {
+        new Quill(textEditors[i], {theme: 'snow'});
+    }
+}
 
-$( document ).ready(function() {
-    var quill = new Quill('#editor2', {
-        theme: 'snow'
-    });
-});
-
-$( document ).ready(function() {
-    var quill = new Quill('#editor3', {
-        theme: 'snow'
-    });
-});
-
-$( document ).ready(function() {
-    var quill = new Quill('#editor4', {
-        theme: 'snow'
-    });
-});
-
-$( document ).ready(function() {
-    var quill = new Quill('#editor5', {
-        theme: 'snow'
-    });
-});
 

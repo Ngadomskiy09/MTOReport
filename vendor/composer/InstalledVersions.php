@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'f325a06772f13db42da1ae6fa56bcb840d6f4f74',
+    'reference' => 'f57704b456aa25e6a0ce21129f966f319011a692',
     'name' => 'davidkislyak/localdungeons',
   ),
   'versions' => 
@@ -52,7 +52,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'f325a06772f13db42da1ae6fa56bcb840d6f4f74',
+      'reference' => 'f57704b456aa25e6a0ce21129f966f319011a692',
     ),
   ),
 );
