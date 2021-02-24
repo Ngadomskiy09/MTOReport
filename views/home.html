@@ -183,7 +183,7 @@
         <!--Textarea for user to place notes-->
         <label class="col-sm-12" for="Pnotes" ><strong>Programmers Notes: </strong>
             <div id="editor">
-                <textarea id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@pronotes}}</textarea>
+                <textarea id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@Pnotes}}</textarea>
             </div>
         </label>
 
@@ -244,7 +244,7 @@
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
                 <div id="editor1">
-                    <textarea id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@opernotes}}</textarea>
+                    <textarea id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
                 </div>
             </label>
             <hr>
@@ -312,7 +312,7 @@
 
                         <div class="row">
                             <label class="sq col-sm-2" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
-                                <input type="text" data-input="9" class="saveInfo form-control seq" data-column="seq_num" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
+                                <input type="text" data-input="9" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                             </label>
                             <span>
                                 <label class="col-sm-3" for="tool{{@sequence['tooling_sequence_id']}}"><strong>Tool#1</strong>
