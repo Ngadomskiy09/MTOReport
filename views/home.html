@@ -6,19 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-<link rel="stylesheet" href="../styles/styles.css">
     <link href="https://cdn.quilljs.com/1.1.6/quill.snow.css" rel="stylesheet">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
+<link rel="stylesheet" href="../styles/styles.css">
 
 
-<title>Home - MTO Report</title>
+    <title>Home - MTO Report</title>
 </head>
 <body>
 <include href="views/header.html">
@@ -182,7 +176,7 @@
 
         <!--Textarea for user to place notes-->
         <label class="col-sm-12" for="Pnotes" ><strong>Programmers Notes: </strong>
-            <div id="editor">
+            <div class="editor">
                 <textarea id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@Pnotes}}</textarea>
             </div>
         </label>
@@ -191,6 +185,23 @@
 
         <div class="form-group">
             <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
+            <div>
+                <table id="opData" class="table hidden">
+                    <thead>
+                    <tr>
+                        <th>Operator Name</th>
+                        <th>Date</th>
+                        <th>PO Number</th>
+                        <th>Machine</th>
+                        <th>Shift</th>
+                        <th>Seq From - To</th>
+                    </tr>
+                    </thead>
+                    <tbody id="opInfo">
+
+                    </tbody>
+                </table>
+            </div>
             <div id="ops">
                     <label for="operator"><strong>Operator's Name: </strong>
                         <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
@@ -243,7 +254,7 @@
 
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
-                <div id="editor1">
+                <div class="editor">
                     <textarea id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
                 </div>
             </label>
@@ -277,7 +288,7 @@
 
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
-                <div id="editor2">
+                <div class="editor">
                     <textarea id="Lnotes" name="Lnotes" rows="10" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
                 </div>
             </label>
@@ -351,20 +362,20 @@
                             <br>
 
                             <label class="col-sm-12" for="pronotes{{@sequence['tooling_sequence_id']}}"><strong>Programmers Notes: </strong>
-                                <div id="editor3">
+                                <div class="editor">
                                     <textarea data-input="4" id="pronotes{{@sequence['tooling_sequence_id']}}" name="pronotes" data-column="programmers_notes" rows="5" maxlength="3000" class="saveInfo form-control" placeholder="...">{{@sequence['programmers_notes']}}</textarea>
                                 </div>
                             </label>
                             <br>
 
                             <label class="col-sm-12" for="opernotes{{@sequence['tooling_sequence_id']}}"><strong>Operator Notes: </strong>
-                                <div id="editor4">
+                                <div class="editor">
                                     <textarea data-input="5" id="opernotes{{@sequence['tooling_sequence_id']}}" name="opernotes" data-column="operators_notes" rows="5" maxlength="3000" class="saveInfo form-control ope" placeholder="...">{{@sequence['operators_notes']}}</textarea>
                                 </div>
                             </label>
 
                             <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
-                                <div id="editor5">
+                                <div class="editor">
                                     <textarea data-input="6" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
                                 </div>
                             </label>
@@ -413,13 +424,17 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="../controller/formFunctions.js"></script>
     <script src="../jsDirectory/formPermissions.js"></script>
+
+
+
+
+
 
 </body>
 </html>
