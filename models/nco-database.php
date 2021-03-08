@@ -31,13 +31,13 @@ class Database
         $dataObj = $_SESSION['info'];
 
 
-        $sql = "INSERT INTO mto.Test VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mto.Test VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $statement = $this->_dbh->prepare($sql);
 
-         $statement->execute([$dataObj->getProgrammer(),$dataObj->getAssy(), $dataObj->getRtime(), $dataObj->getModel(), $dataObj->getFwc(), $dataObj->getMedia(),
+         $statement->execute([$dataObj->getProgrammer(), $dataObj->getAssy(), $dataObj->getModel(), $dataObj->getFwc(), $dataObj->getMedia(),
             $dataObj->getProgram(), $dataObj->getMake(), $dataObj->getDate(), $dataObj->getPtime(), $dataObj->getPtype(), $dataObj->getStatus(),
-            $dataObj->getReason(), $dataObj->getGraphic(), $dataObj->getMcd(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
+            $dataObj->getReason(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
             $dataObj->getProcess(), $dataObj->getOnotes(), $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
             $dataObj->getLnotes(), $dataObj->getSig2(), $dataObj->getSig2date()]);
 
@@ -99,9 +99,9 @@ class Database
     {
         $dataObj = $_SESSION['info'];
 
-        $sql = "UPDATE mto.Test SET Programmer = ?, Assy = ?, Runtime = ?, Model = ?, FWC = ?, Media = ?, 
+        $sql = "UPDATE mto.Test SET Programmer = ?, Assy = ?, Model = ?, FWC = ?, Media = ?, 
                 Program_number = ?, Used_to_make = ?, Program_Date = ?, Program_Time = ?, 
-                Program_type = ?, Part_Status = ?, Rev_reason = ?, Graphic = ?, MCD_compare = ?, 
+                Program_type = ?, Part_Status = ?, Rev_reason = ?,  
                 Prev_buy_off = ?, Programmers_instructions = ?, programmers_notes = ?,
                 Milling_proc = ?, operators_notes = ?, Geometry = ?, Signature = ?, 
                 Layout_Date = ?, Layout_notes = ?, 
@@ -109,9 +109,9 @@ class Database
 
         $statement = $this->_dbh->prepare($sql);
 
-        $statement->execute([$dataObj->getProgrammer(), $dataObj->getAssy(), $dataObj->getRtime(), $dataObj->getModel(), $dataObj->getFwc(), $dataObj->getMedia(),
+        $statement->execute([$dataObj->getProgrammer(), $dataObj->getAssy(), $dataObj->getModel(), $dataObj->getFwc(), $dataObj->getMedia(),
             $dataObj->getProgram(), $dataObj->getMake(), $dataObj->getDate(), $dataObj->getPtime(), $dataObj->getPtype(), $dataObj->getStatus(),
-            $dataObj->getReason(), $dataObj->getGraphic(), $dataObj->getMcd(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
+            $dataObj->getReason(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
             $dataObj->getProcess(), $dataObj->getOnotes(), $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
             $dataObj->getLnotes(), $dataObj->getSig2(), $dataObj->getSig2date(), $formID]);
     }
@@ -133,7 +133,7 @@ class Database
     function setToolingSequence($formID, $toolingSeqId)
     {
         $sql = 'INSERT INTO mto.Tooling_sequence
-                VALUES(?, ?, default, default, default, default, default, default, default, default, default, default, default)';
+                VALUES(?, ?, default, default, default, default, default)';
 
         $statement = $this->_dbh->prepare($sql);
 

@@ -14,13 +14,7 @@ class Routes
 
     function home($id)
     {
-        /*if($id != 0) {
-            $this->_f3->reroute('/home/0');
-        } else {
-            $this->_f3->reroute('/home/@id');
-            $dataUp = $this->_dbh->getUpdate($id);
-            $this->_dbh->DataUpdate($id);
-        }*/
+        //var_dump($this->_dbh->showSequence($id));
         if ($id !== 0) {
 
             $grab = $this->_dbh->getUpdate($id);
@@ -30,7 +24,6 @@ class Routes
             $this->_f3->set('sequences',$this->_dbh->showSequence($id));
             $this->_f3->set('programmer', $grab['Programmer']);
             $this->_f3->set('assy', $grab['Assy']);
-            $this->_f3->set('rtime', $grab['Runtime']);
             $this->_f3->set('model', $grab['Model']);
             $this->_f3->set('fwc', $grab['FWC']);
             $this->_f3->set('media', $grab['Media']);
@@ -41,8 +34,6 @@ class Routes
             $this->_f3->set('ptype', $grab['Program_type']);
             $this->_f3->set('stats', $grab['Part_Status']);
             $this->_f3->set('reason4', $grab['Rev_reason']);
-            $this->_f3->set('graph', $grab['Graphic']);
-            $this->_f3->set('mc', $grab['MCD_compare']);
             $this->_f3->set('bf', $grab['Prev_buy_off']);
             $this->_f3->set('instruct', $grab['Programmers_instructions']);
             $this->_f3->set('Pnotes', $grab['programmers_notes']);
@@ -57,12 +48,6 @@ class Routes
             $this->_f3->set('geo', $grab['Geometry']);
             $this->_f3->set('signature', $grab['Signature']);
             $this->_f3->set('sigdate', $grab['Layout_Date']);
-            $this->_f3->set('tool', $grab['tool']);
-            $this->_f3->set('desc', $grab['desc']);
-            $this->_f3->set('tool1', $grab['tool1']);
-            $this->_f3->set('desc1', $grab['desc1']);
-            $this->_f3->set('pronotes', $grab['programmers_notes']);
-            $this->_f3->set('opernotes', $grab['operators_notes']);
             $this->_f3->set('mtostatus', $grab['mtostatus']);
             $this->_f3->set('rpmran', $grab['rpmran']);
             $this->_f3->set('mtocomments', $grab['mtocomments']);
@@ -77,7 +62,6 @@ class Routes
             //$grab = $grab[0];
             $programmer = $_POST['programmer'];
             $assy = $_POST['assy'];
-            $rtime = $_POST['rtime'];
             $model = $_POST['model'];
             $fwc = $_POST['fwc'];
             $media = $_POST['media'];
@@ -88,8 +72,6 @@ class Routes
             $ptype = $_POST['ptype'];
             $status = $_POST['status'];
             $reason = $_POST['reason'];
-            $graphic = $_POST['graphic'];
-            $mcd = $_POST['mcd'];
             $buyoff = $_POST['buyoff'];
             $instruction = $_POST['instruction'];
             $pnotes = $_POST['Pnotes'];
@@ -104,12 +86,6 @@ class Routes
             $geometry = $_POST['geometry'];
             $signature = $_POST['signature'];
             $sigdate = $_POST['sigdate'];
-            $tool = $_POST['tool'];
-            $desc = $_POST['desc'];
-            $tool1 = $_POST['tool1'];
-            $desc1 = $_POST['desc1'];
-            $pronotes = $_POST['pronotes'];
-            $opernotes = $_POST['opernotes'];
             $mtostatus = $_POST['mtostatus'];
             $rpmran = $_POST['rpmran'];
             $mtocomments = $_POST['mtocomments'];
@@ -120,7 +96,6 @@ class Routes
             // Add Data to hive
             $this->_f3->set('programmer', $programmer);
             $this->_f3->set('assy', $assy);
-            $this->_f3->set('rtime', $rtime);
             $this->_f3->set('model', $model);
             $this->_f3->set('fwc', $fwc);
             $this->_f3->set('media', $media);
@@ -131,8 +106,6 @@ class Routes
             $this->_f3->set('ptype', $ptype);
             $this->_f3->set('stats', $status);
             $this->_f3->set('reason4', $reason);
-            $this->_f3->set('graph', $graphic);
-            $this->_f3->set('mc', $mcd);
             $this->_f3->set('bf', $buyoff);
             $this->_f3->set('instruct', $instruction);
             $this->_f3->set('Pnotes', $pnotes);
@@ -147,12 +120,6 @@ class Routes
             $this->_f3->set('geo', $geometry);
             $this->_f3->set('signature', $signature);
             $this->_f3->set('sigdate', $sigdate);
-            $this->_f3->set('tool', $tool);
-            $this->_f3->set('desc', $desc);
-            $this->_f3->set('tool1', $tool1);
-            $this->_f3->set('desc1', $desc1);
-            $this->_f3->set('pronotes', $pronotes);
-            $this->_f3->set('opernotes', $opernotes);
             $this->_f3->set('mtostatus', $mtostatus);
             $this->_f3->set('rpmran', $rpmran);
             $this->_f3->set('mtocomments', $mtocomments);
@@ -163,7 +130,6 @@ class Routes
             // Write Data to session
             $_SESSION['programmer'] = $programmer;
             $_SESSION['assy'] = $assy;
-            $_SESSION['rtime'] = $rtime;
             $_SESSION['model'] = $model;
             $_SESSION['fwc'] = $fwc;
             $_SESSION['media'] = $media;
@@ -174,8 +140,6 @@ class Routes
             $_SESSION['ptype'] = $ptype;
             $_SESSION['status'] = $status;
             $_SESSION['reason'] = $reason;
-            $_SESSION['graphic'] = $graphic;
-            $_SESSION['mcd'] = $mcd;
             $_SESSION['buyoff'] = $buyoff;
             $_SESSION['instruction'] = $instruction;
             $_SESSION['Pnotes'] = $pnotes;
@@ -190,21 +154,15 @@ class Routes
             $_SESSION['geometry'] = $geometry;
             $_SESSION['signature'] = $signature;
             $_SESSION['sigdate'] = $sigdate;
-            $_SESSION['tool'] = $tool;
-            $_SESSION['desc'] = $desc;
-            $_SESSION['tool1'] = $tool1;
-            $_SESSION['desc1'] = $desc1;
-            $_SESSION['pronotes'] = $pronotes;
-            $_SESSION['opernotes'] = $opernotes;
             $_SESSION['mtostatus'] = $mtostatus;
             $_SESSION['rpmran'] = $rpmran;
             $_SESSION['mtocomments'] = $mtocomments;
             $_SESSION['Lnotes'] = $lnotes;
             $_SESSION['sig2'] = $sig2;
             $_SESSION['sig2date'] = $sig2date;
-            $_SESSION['info'] = new formData ($_POST['programmer'], $_POST['assy'], $_POST['rtime'], $_POST['model'], $_POST['fwc'],
+            $_SESSION['info'] = new formData ($_POST['programmer'], $_POST['assy'], $_POST['model'], $_POST['fwc'],
                 $_POST['media'], $_POST['program'], $_POST['make'], $_POST['date'],
-                $_POST['ptime'], $_POST['ptype'], $_POST['status'], $_POST['reason'], $_POST['graphic'], $_POST['mcd'],
+                $_POST['ptime'], $_POST['ptype'], $_POST['status'], $_POST['reason'],
                 $_POST['buyoff'], $_POST['instruction'], $_POST['Pnotes'], $_POST['operator'], $_POST['date2'], $_POST['po'],
                 $_POST['machine'], $_POST['shift'], $_POST['seq'],$_POST['process'], $_POST['Onotes'], $_POST['geometry'], $_POST['signature'],
                 $_POST['sigdate'], $_POST['Lnotes'], $_POST['sig2'], $_POST['sig2date']);
@@ -259,49 +217,20 @@ class Routes
            
                     <div class=\"row\">
                             <label class=\"col-sm-3\" for=\"seq$value\">Seq#
-                                <input type=\"text\" data-input=\"9\" class=\"saveInfo form-control shorten\" data-column=\"seq_num\" maxlength=\"5\" id=\"seq$value\" name=\"seqNum\">
+                                <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control shorten\" data-column=\"seq_num\" maxlength=\"5\" id=\"seq$value\" name=\"seqNum\">
                             </label>
-                  
-
-                        <label class=\"col-sm-3\" for=\"tool$value\">Tool#1
-                            <input type=\"text\" data-input=\"0\" class=\"saveInfo form-control\" data-column=\"tool_num_1\" maxlength=\"5\" id=\"tool$value\" name=\"tool\">
-                        </label>
-    
-                        <label class=\"col-sm-8\" for=\"desc$value\">Description
-                            <input type=\"text\" data-input=\"1\" class=\"saveInfo form-control\" data-column=\"tool_description_1\" id=\"desc$value\" name=\"desc\">
-                        </label>
-    
-    
-                        <label class=\"col-sm-3\" for=\"tool1$value\">Tool#2
-                            <input type=\"text\" data-input=\"2\" class=\"saveInfo form-control\" data-column=\"tool_num_2\" maxlength=\"5\"  id=\"tool1$value\" name=\"tool1\">
-                        </label>
-    
-                        <label class=\"col-sm-8\" for=\"desc1$value\">Description
-                            <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control\" data-column=\"tool_description_2\" id=\"desc1$value\" name=\"desc1\">
-                        </label>
-    
-                        <label class=\"col-sm-12\" for=\"pronotes$value\"><strong>Programmers Notes: </strong>
-                            <div id=\"editor3\">
-                                <textarea id=\"pronotes$value\" data-input=\"4\" data-column=\"programmers_notes\" name=\"pronotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
-                            </div>
-                        </label>
-                        <br>
-    
-                        <label class=\"col-sm-12\" for=\"opernotes$value\"><strong>Operator Notes: </strong>
-                            <textarea id=\"opernotes$value\" data-input=\"5\" data-column=\"operators_notes\" name=\"opernotes\" rows=\"5\" maxlength=\"3000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
-                        </label>
     
                         <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
-                            <textarea id=\"mtocomments$value\" data-input=\"6\" data-column=\"mto_comments\" name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
+                            <textarea id=\"mtocomments$value\" data-input=\"0\" data-column=\"mto_comments\" name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
                         </label>
                      </div>
 
                     <label for=\"rpmran$value\">F/R and RPM ran @100%
-                        <input class=\"saveInfo\" data-input=\"7\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"rpmran\">
+                        <input class=\"saveInfo\" data-input=\"1\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"rpmran\">
                     </label>
 
                     <label><strong>MTO Status: </strong>
-                        <select  class=\"form-control saveInfo\" data-column=\"tooling_mto_status\" data-input=\"8\">";
+                        <select  class=\"form-control saveInfo\" data-column=\"tooling_mto_status\" data-input=\"2\">";
 
                             foreach( $this->_f3->get("mtostat") as $stat)
                                echo "<option value=\"$stat\">$stat</option>";
@@ -324,9 +253,9 @@ class Routes
     function saveSeq()
     {
         // index 0: == form id, 1: == the sequence id, 2: == the column where the value goes, 3: == value entered
-        echo "<pre>";
-        //var_dump($_POST);
-        echo "</pre>";
+        /**echo "<pre>";
+        var_dump($_POST);
+        echo "</pre>";**/
 
         foreach ($_POST["toolSeqInfo"] as $column) {
             if(!empty($column)){

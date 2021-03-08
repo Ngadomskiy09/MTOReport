@@ -4,7 +4,6 @@ class formData
 {
     private $_programmer;
     private $_assy;
-    private $_rtime;
     private $_model;
     private $_fwc;
     private $_media;
@@ -15,8 +14,6 @@ class formData
     private $_ptype;
     private $_status;
     private $_reason;
-    private $_graphic;
-    private $_mcd;
     private $_buyoff;
     private $_instruction;
     private $_operator;
@@ -35,14 +32,13 @@ class formData
     private $_Onotes;
     private $_Pnotes;
 
-    function __construct($programmer,$assy, $rtime, $model, $fwc, $media, $program, $make, $date, $ptime, $ptype, $status,
-                         $reason, $graphic, $mcd, $buyoff, $instruction, $pnotes, $operator, $date2, $po, $machine, $shift,
+    function __construct($programmer,$assy, $model, $fwc, $media, $program, $make, $date, $ptime, $ptype, $status,
+                         $reason, $buyoff, $instruction, $pnotes, $operator, $date2, $po, $machine, $shift,
                          $seq, $process, $onotes, $geometry, $signature, $sigdate, $lnotes, $sig2, $sig2date)
     {
 
         $this->_programmer = $programmer;
         $this->_assy = $assy;
-        $this->_rtime = $rtime;
         $this->_model = $model;
         $this->_fwc = $fwc;
         $this->_media = $media;
@@ -53,8 +49,6 @@ class formData
         $this->_ptype = $ptype;
         $this->_status = $status;
         $this->_reason = $reason;
-        $this->_graphic = $graphic;
-        $this->_mcd = $mcd;
         $this->_buyoff = $buyoff;
         $this->_instruction = $instruction;
         $this->_operator = $operator;
@@ -100,11 +94,6 @@ class formData
         return $this->_date;
     }
 
-    function getRtime()
-    {
-        return $this->_rtime;
-    }
-
     function getModel()
     {
         return $this->_model;
@@ -133,16 +122,6 @@ class formData
     function getReason()
     {
         return $this->_reason;
-    }
-
-    function getGraphic()
-    {
-        return $this->_graphic;
-    }
-
-    function getMcd()
-    {
-        return $this->_mcd;
     }
 
     function getBuyoff()
@@ -265,11 +244,6 @@ class formData
         $this->_date = $date;
     }
 
-    function setRtime($rtime)
-    {
-        $this->_rtime = $rtime;
-    }
-
     function setModel($model)
     {
         $this->_model = $model;
@@ -303,16 +277,6 @@ class formData
     function setReason($reason)
     {
         $this->_reason = $reason;
-    }
-
-    function setGraphic($graphic)
-    {
-        $this->_graphic = $graphic;
-    }
-
-    function setMcd($mcd)
-    {
-        $this->_mcd = $mcd;
     }
 
     function setBuyoff($buyoff)

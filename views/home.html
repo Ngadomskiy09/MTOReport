@@ -37,13 +37,6 @@
                 <span class="err">{{ @errors['assy'] }}</span>
             </check>
 
-            <label for="rtime"><strong>Runtime: </strong>
-                <input id="rtime" type="text" class="form-control" name="rtime" value="{{ @rtime}}" placeholder="ex: 540 min">
-            </label>
-            <check if="{{ @errors['rtime'] }}">
-                <span class="err">{{ @errors['rtime'] }}</span>
-            </check>
-
             <label for="model"><strong>Model: </strong>
                 <input id="model" type="text" class="form-control" name="model" value="{{ @model}}" size="10">
             </label>
@@ -83,8 +76,8 @@
                 <input id="ptime" type="text" class="form-control" maxlength="8" name="ptime" value="{{ @ptime}}">
             </label>
 
-            <label class="col-sm-2" for="ptype"><strong>Program Type: </strong>
-                <input id="ptype" type="text" class="form-control" name="ptype" placeholder="Ex. MTO 1" value="{{ @ptype }}">
+            <label class="col-sm-2" for="ptype"><strong>MTO #: </strong>
+                <input id="ptype" type="text" class="form-control" name="ptype" value="{{ @ptype }}">
             </label>
 
             <!--Dropdown values pulled from array of options-->
@@ -121,33 +114,6 @@
             <!--<input type="text" name="reason" class="form-control" id="reason" placeholder="SAT#"style='display:none;' maxlength="20" />-->
 
             <!--Dropdown values pulled from array of options-->
-            <label class="col-sm-auto"><strong>Graphic Check: </strong>
-                <select name="graphic" class="form-control" onchange='CheckNCPSR(this.value);'>
-                    <repeat group="{{ @graphics }}" value="{{ @graphic }}">
-                        <option value="{{ @graphic }}"
-                                <check if="{{ @graph == @graphic }}">
-                                    selected = "selected"
-                                </check>
-                        >{{ @graphic }}
-                    </repeat>
-                </select>
-            </label>
-            <!--<input type="text" name="graphic" class="form-control" id="graphic"  placeholder="NCPSR#"style='display:none;' maxlength="20" />-->
-
-            <!--Dropdown values pulled from array of options-->
-            <label class="col-sm-auto"><strong>MCD Compare: </strong>
-                <select name="mcd" class="form-control">
-                    <repeat group="{{ @mcds }}" value="{{ @mcd }}">
-                        <option value="{{ @mcd }}"
-                                <check if="{{ @mc == @mcd }}">
-                                    selected = "selected"
-                                </check>
-                        >{{ @mcd }}
-                    </repeat>
-                </select>
-            </label>
-
-            <!--Dropdown values pulled from array of options-->
             <label class="col-sm-auto"><strong>Previous Buy-Off: </strong>
                 <select id="buyoff" name="buyoff" class="form-control">
                     <repeat group="{{ @buyoffs }}" value="{{ @buyoff }}">
@@ -177,7 +143,7 @@
         <!--Textarea for user to place notes-->
         <label class="col-sm-12" for="Pnotes" ><strong>Programmers Notes: </strong>
             <div class="editor">
-                <textarea id="Pnotes" name="Pnotes" rows="10" maxlength="50000" class="form-control" placeholder="...">{{@Pnotes}}</textarea>
+                <textarea id="Pnotes" name="Pnotes" rows="5" maxlength="50000" class="form-control" placeholder="...">{{@Pnotes}}</textarea>
             </div>
         </label>
 
@@ -207,7 +173,7 @@
                         <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
                     </label>
 
-                    <label for="date2"><strong>Date: </strong>
+                    <label for="date2"><strong>Run Date: </strong>
                         <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
                     </label>
 
@@ -255,7 +221,7 @@
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
                 <div class="editor">
-                    <textarea id="Onotes" name="Onotes" rows="10" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
+                    <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
                 </div>
             </label>
             <hr>
@@ -289,7 +255,7 @@
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
                 <div class="editor">
-                    <textarea id="Lnotes" name="Lnotes" rows="10" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
+                    <textarea id="Lnotes" name="Lnotes" rows="5" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
                 </div>
             </label>
         </div>
@@ -322,68 +288,40 @@
                 <div class="block" data-id = "{{@sequence['tooling_sequence_id']}}">
 
                         <div class="row">
-                            <label class="sq col-sm-2" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
-                                <input type="text" data-input="9" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
-                            </label>
-                            <span>
-                                <label class="col-sm-3" for="tool{{@sequence['tooling_sequence_id']}}"><strong>Tool#1</strong>
-                                    <input type="text" data-input="0" class="saveInfo form-control" data-column="tool_num_1" maxlength="5" id="tool{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_1']}}" name="tool">
+                           <div>
+                                <label class="sq col-sm-6" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
+                                    <input type="text" data-input="3" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                                 </label>
-
-                                <label class="col-sm-8" for="desc{{@sequence['tooling_sequence_id']}}"><strong>Description</strong>
-                                    <input type="text" data-input="1" class="saveInfo form-control" data-column="tool_description_1" id="desc{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_1']}}" name="desc">
-                                </label>
-
-                                <label class="col-sm-3" for="tool1{{@sequence['tooling_sequence_id']}}"><strong>Tool#2</strong>
-                                    <input type="text" data-input="2" class="saveInfo form-control"data-column="tool_num_2" maxlength="5"  id="tool1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_num_2']}}" name="tool1">
-                                </label>
-
-                                <label class="col-sm-8" for="desc1{{@sequence['tooling_sequence_id']}}"><strong>Description</strong>
-                                    <input type="text" data-input="3" class="saveInfo form-control" data-column="tool_description_2" id="desc1{{@sequence['tooling_sequence_id']}}" value="{{@sequence['tool_description_2']}}" name="desc1">
-                                </label>
-                            </span>
-
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
-                            <input class="col-sm-3" type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
-                            <check if = '{{!isset(@sequence["file_url"])}}'>
-                                <true><img src="" alt="random programming image" class="disappear"></true>
-                                <false><img src="../images/{{@sequence['file_url']}}" id='seqImage{{@sequence["tooling_sequence_id"]}}' alt="random programming image"></false>
-                            </check>
-
+                           </div>
 
                             <br>
                             <br>
 
-                            <label class="col-sm-12" for="pronotes{{@sequence['tooling_sequence_id']}}"><strong>Programmers Notes: </strong>
-                                <div class="editor">
-                                    <textarea data-input="4" id="pronotes{{@sequence['tooling_sequence_id']}}" name="pronotes" data-column="programmers_notes" rows="5" maxlength="3000" class="saveInfo form-control" placeholder="...">{{@sequence['programmers_notes']}}</textarea>
-                                </div>
-                            </label>
-                            <br>
+                            <div>
+                                <input class="col-sm-3" type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
+                                <check if = '{{!isset(@sequence["file_url"])}}'>
+                                    <true><img src="" alt="random programming image" class="disappear"></true>
+                                    <false><img src="../images/{{@sequence['file_url']}}" id='seqImage{{@sequence["tooling_sequence_id"]}}' alt="random programming image"></false>
+                                </check>
+                            </div>
 
-                            <label class="col-sm-12" for="opernotes{{@sequence['tooling_sequence_id']}}"><strong>Operator Notes: </strong>
-                                <div class="editor">
-                                    <textarea data-input="5" id="opernotes{{@sequence['tooling_sequence_id']}}" name="opernotes" data-column="operators_notes" rows="5" maxlength="3000" class="saveInfo form-control ope" placeholder="...">{{@sequence['operators_notes']}}</textarea>
-                                </div>
-                            </label>
+
+                            <br>
+                            <br>
 
                             <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
                                 <div class="editor">
-                                    <textarea data-input="6" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
+                                    <textarea data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
                                 </div>
                             </label>
                         </div>
 
+                    <br>
+                    <br>
+
                         <div>
                             <label><strong>MTO Status: </strong>
-                                <select class="form-control saveInfo" data-column="tooling_mto_status" data-input="8">
+                                <select class="form-control saveInfo" data-column="tooling_mto_status" data-input="2">
                                     <repeat group="{{@mtostat}}" value="{{@mto}}">
                                         <option value="{{@mto}}"
                                         <check if="{{@sequence['tooling_mto_status'] === @mto}}">selected</check>
@@ -395,7 +333,7 @@
                             <br>
 
                             <label for="rpmran{{@sequence['tooling_sequence_id']}}">F/R and RPM ran @100%
-                                <input type="checkbox" data-input="7" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo">
+                                <input type="checkbox" data-input="1" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo">
                                 <check if="{{@sequence['fr_rpm_100'] == 1}}">checked</check>
                             </label>
                         </div>

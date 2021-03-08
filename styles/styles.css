@@ -9,7 +9,7 @@ div {
 }
 
 #program {
-    font-size: 70px;
+    font-size: 60px;
 }
 
 .disappear {
@@ -22,7 +22,7 @@ img {
 }
 
 #program {
-    height: 8rem;
+    height: 5rem;
     font-weight:bold;
 }
 
@@ -89,7 +89,7 @@ textarea {
 }
 
 #make {
-    margin-top: -50px;
+    margin-top: -70px;
     height: 80px;
 }
 

@@ -20,12 +20,10 @@ $routes = new Routes($f3);
 $f3->set('DEBUG', 3);
 
 // array setup
-$f3->set('stat', array('', 'Marginal', 'No buy-off', 'Needs L/O re-check', 'Layout in work','Waiting for Team Lead signature', 'PRO'));
+$f3->set('stat', array('', 'Marginal', 'No buy-off', 'Needs L/O re-check', 'Layout in work','Waiting for Team Lead signature', 'PRO', 'Work in Progress'));
 $f3->set('reasons', array('', 'Improvement', 'change', 'SAT'));
-$f3->set('graphics', array('', 'Vericut', 'Deneb', 'NCPSR'));
-$f3->set('mcds', array('', 'yes', 'no'));
 $f3->set('buyoffs', array('', 'Yes', 'No', 'Marginal (L/O)', 'Marginal (Shop)', 'N/A'));
-$f3->set('instructions', array('', 'Programmer presence required', 'Ok to run without programmer'));
+$f3->set('instructions', array('', 'Programmer presence required', 'Team Lead presence required'));
 $f3->set('shifts', array('', '1', '2', '3'));
 $f3->set('processes', array('', 'Yes', 'No', 'Still needs work'));
 $f3->set('geometrys', array('', 'Yes', 'No', 'Marginal', 'L/O in process', 'Re-check required'));
