@@ -28,7 +28,7 @@ $f3->set('shifts', array('', '1', '2', '3'));
 $f3->set('processes', array('', 'Yes', 'No', 'Still needs work'));
 $f3->set('geometrys', array('', 'Yes', 'No', 'Marginal', 'L/O in process', 'Re-check required'));
 $f3->set('mtostat', array('', 'Ran Good!', 'Marginal', 'Not Acceptable', 'Other(Add Comments)'));
-$f3->set('permission', array('Select One', 'Operator', 'Programmer', 'Layout', 'Team Lead'));
+$f3->set('permission', array('Select One', 'Admin'));
 
 
 //route to home page
@@ -67,6 +67,14 @@ $f3->route('POST /saveSeqPic', function() {
 
 $f3->route('POST /removeData', function() {
     $GLOBALS['routes']->removeData();
+});
+
+$f3->route('GET|POST /login', function () {
+    $GLOBALS['routes']->loginpage();
+});
+
+$f3->route('GET|POST /register', function () {
+    $GLOBALS['routes']->register();
 });
 
 //run fat free

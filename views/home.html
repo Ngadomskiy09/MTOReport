@@ -18,6 +18,7 @@
 <include href="views/header.html">
 
     <h1 class="disappear">{{@SESSION.permission}}</h1>
+    <div id="vip" data-vip="{{@SESSION.formID}}"></div>
 
 <form id="info" action="#" method="post" enctype="multipart/form-data">
 <div class="container">
@@ -292,13 +293,11 @@
                                 <label class="sq col-sm-6" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
                                     <input type="text" data-input="3" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                                 </label>
-                           </div>
 
                             <br>
                             <br>
 
-                            <div>
-                                <input class="col-sm-3" type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
+                                <input class="col-sm-12" type="file" id="image" name="image" data-column="file_url" data-seqid = "{{@sequence['tooling_sequence_id']}}" data-formid="{{@SESSION.formID}}">
                                 <check if = '{{!isset(@sequence["file_url"])}}'>
                                     <true><img src="" alt="random programming image" class="disappear"></true>
                                     <false><img src="../images/{{@sequence['file_url']}}" id='seqImage{{@sequence["tooling_sequence_id"]}}' alt="random programming image"></false>
@@ -368,10 +367,6 @@
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="../controller/formFunctions.js"></script>
     <script src="../jsDirectory/formPermissions.js"></script>
-
-
-
-
 
 
 </body>

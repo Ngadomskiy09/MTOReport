@@ -61,3 +61,12 @@ CREATE TABLE mto.Tooling_sequence (
     ON UPDATE NO ACTION,
     PRIMARY KEY (tooling_sequence_id, formID)
 );
+
+CREATE TABLE mto.User (
+  id INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(20) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  permission VARCHAR(3) NULL,
+  name VARCHAR(128) NULL,
+  PRIMARY KEY (id)
+);

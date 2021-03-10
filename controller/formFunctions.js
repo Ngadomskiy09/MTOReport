@@ -38,6 +38,7 @@ $(document).ready(function(){
     $("#opInfo").html('');
     id = $('#vip').data('vip');
 
+    console.log(id);
     $.post('/getops',{
         id: id
     }).done(function(data) {
@@ -222,5 +223,6 @@ function textarea() {
         new Quill(textEditors[i], {theme: 'snow'});
     }
 }
+
 
 

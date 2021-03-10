@@ -41,8 +41,19 @@ class Database
             $dataObj->getProcess(), $dataObj->getOnotes(), $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
             $dataObj->getLnotes(), $dataObj->getSig2(), $dataObj->getSig2date()]);
 
-        $this->setFirstPartMtoRun($this->_dbh->lastInsertId());
+        $this->_dbh->lastInsertId();
+    }
 
+    function createReport ()
+    {
+
+        $sql = "INSERT INTO mto.Test VALUES (DEFAULT, NULL , NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->execute();
+
+        return $this->_dbh->lastInsertId();
     }
 
     function insertOps()
@@ -114,6 +125,8 @@ class Database
             $dataObj->getReason(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
             $dataObj->getProcess(), $dataObj->getOnotes(), $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
             $dataObj->getLnotes(), $dataObj->getSig2(), $dataObj->getSig2date(), $formID]);
+
+        $this->setFirstPartMtoRun($_SESSION['formID']);
     }
 
     //GET tooling_sequence
@@ -214,4 +227,68 @@ class Database
         $statement->execute([$formId]);
 
     }
+
+    // this function will take a username and password and attempt to log a user into the website
+    function login($username, $password)
+    {
+        // define sql query
+        $sql = "SELECT id, username, password, permission, name FROM mto.User WHERE username = :username";
+
+        // prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':username', $username);
+
+        // execute statement
+        $statement->execute();
+
+        // get array of values
+        $array = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // TRUE if string $password matches string $array['0']['password'] (hash)
+        if(password_verify($password, $array['0']['password'])) {
+            return array (
+                'id' => $array['0']['id'],
+                'username' => $array['0']['username'],
+                'permission' => $array['0']['permission'],
+                'name' => $array['0']['name']
+            );
+        } else {
+            // return an empty array
+            return array();
+        }
+    }
+
+    // this function will take a username and check to see if they are already in the database.
+    function checkForUser($username)
+    {
+        // define sql query
+        $sql = "SELECT id FROM mto.User WHERE username = ?";
+
+        // prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // execute statement
+        $statement->execute([$username]);
+
+        // return return array of results
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // this function will take a username and password and attempt to create a user in the database
+    function register($username, $password, $permission, $name)
+    {
+        // prepare sql statement
+        $sql = "INSERT INTO mto.User VALUES (DEFAULT, ?, ?, ?, ?)";
+
+        // prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // execute statement
+        $statement->execute([$username, password_hash($password, PASSWORD_DEFAULT), $permission, $name]);
+
+        // nothing to return
+    }
+
 }
