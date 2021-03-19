@@ -22,34 +22,30 @@
 
 <!-- Title and Contact Info -->
 <div class="container main">
-    <div class="jumbotron" style="text-align: center">
-        <span class="head">MTO Report Data</span>
-        <p class="lead">MTO Document</p>
-    </div>
+    <include href="views/header.html">
+        <form id="login" action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group" align="center">
+                <p class="center">Log in to get going</p>
+                <label>
+                    <input class="form-control" id="username" type="text" name="username" placeholder="Username"
+                           value="{{ @username }}">
+                    <check if="{{ isset(@username_err) }}">
+                        <label class="text-danger">{{ @username_err }}</label>
+                    </check>
+                </label><br>
+                <label>
+                    <input class="form-control" id="password" type="password" name="password" placeholder="Password" ">
+                    <check if="{{ isset(@password_err) }}">
+                        <label class="text-danger">{{ @password_err }}</label>
+                    </check>
+                </label>
+                <br>
+                <button class="btn btn-primary mb-4" type="submit" name="submit" value="Log in">Login</button>
+
+                <hr class="m-5">
+            </div><!-- end of div container-->
+        </form>
 </div>
-
-<form id="login" action="#" method="post" enctype="multipart/form-data">
-    <div class="form-group" align="center">
-        <p class="center">Log in to get going</p>
-        <label>
-            <input class="form-control" id="username" type="text" name="username" placeholder="Username"
-                   value="{{ @username }}">
-            <check if="{{ isset(@username_err) }}">
-                <label class="text-danger">{{ @username_err }}</label>
-            </check>
-        </label><br>
-        <label>
-            <input class="form-control" id="password" type="password" name="password" placeholder="Password" ">
-            <check if="{{ isset(@password_err) }}">
-                <label class="text-danger">{{ @password_err }}</label>
-            </check>
-        </label>
-        <br>
-        <button class="btn btn-primary mb-4" type="submit" name="submit" value="Log in">Login</button>
-
-        <hr class="m-5">
-    </div><!-- end of div container-->
-</form>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

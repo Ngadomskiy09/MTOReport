@@ -15,13 +15,13 @@
     <title>Home - MTO Report</title>
 </head>
 <body>
-<include href="views/header.html">
 
     <h1 class="disappear">{{@SESSION.permission}}</h1>
     <div id="vip" data-vip="{{@SESSION.formID}}"></div>
 
 <form id="info" action="#" method="post" enctype="multipart/form-data">
-<div class="container">
+<div class="container main">
+    <include href="views/header.html">
     <div class="form-group" id="heading">
         <!--Input Values to start the form-->
             <label for="programmer"><strong>Programmer: </strong>
@@ -290,7 +290,7 @@
 
                         <div class="row">
                            <div>
-                                <label class="sq col-sm-6" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
+                                <label class="sq col-sm-3" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
                                     <input type="text" data-input="3" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                                 </label>
 
@@ -349,11 +349,11 @@
         </div>
 
     <br>
-
-    <span>
+        <div>
         <button type="submit" class="btn btn-primary btn-lg col-sm-9" value="next" id="next">Save</button>
-        <button id="print" type="button" class="btn btn-primary btn-lg col-sm-2" onclick="window.print()">Print Page</button>
-    </span>
+        <a href="/mtoreport/{{@SESSION.formID}}"><button id="mtoreport" type="button" class="btn btn-primary btn-lg col-sm-2"
+                                                             name="mtoreport" value="mtoreport">MTO Report</button></a>
+        </div>
 </div>
 </form>
 

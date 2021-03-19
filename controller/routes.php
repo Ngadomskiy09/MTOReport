@@ -368,4 +368,12 @@ class Routes
     {
         $this->_dbh->deleteFullForm($_POST['dataRemoval']);
     }
+
+    function mtoreport($id)
+    {
+        $value = $this->_dbh->getMtoreport($id);
+        $this->_f3->set("seqnotes", $value);
+        $views = new Template();
+        echo $views->render("views/mtoreport.html");
+    }
 }

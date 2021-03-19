@@ -17,90 +17,84 @@
     <!-- Jumbotron -->
     <!-- Title and Contact Info -->
     <div class="container main">
-        <div class="jumbotron" style="text-align: center">
-            <span class="head">MTO Report Data</span>
-            <p class="lead">MTO Document</p>
-        </div>
+        <include href="views/header.html">
+            <form id="register" action="#" method="post" enctype="multipart/form-data">
+
+                <div class="form-group" align="center">
+
+
+                    <!-- username -->
+                    <label>
+                        <input class="form-control" id="username" type="text" name="username" placeholder="Username"
+                               value="{{ @username }}">
+                        <check if="{{ isset(@username_err) }}">
+                            <label class="text-danger">{{ @username_err }}</label>
+                        </check>
+                    </label>
+                    <br>
+                    <!-- /username -->
+
+                    <!-- password -->
+                    <label>
+                        <input class="form-control" id="password" type="password" name="password"
+                               placeholder="Password">
+                        <check if="{{ isset(@password_err) }}">
+                            <label class="text-danger">{{ @password_err }}</label>
+                        </check>
+                    </label>
+                    <br>
+                    <!-- /password -->
+
+                    <!-- confirm password -->
+                    <label>
+                        <input class="form-control" id="confirm_password" type="password" name="confirm_password"
+                               placeholder="Confirm Password">
+                        <check if="{{ isset(@confirm_password_err) }}">
+                            <label class="text-danger">{{ @confirm_password_err }}</label>
+                        </check>
+                    </label>
+                    <br>
+                    <!-- /confirm password -->
+
+                    <!-- permission dropdown -->
+                    <label>
+                        <select name="permission" id="permission" class="form-control">
+                            <repeat group="{{ @permission }}" value="{{ @permissions }}">
+                                <option value="{{ substr(@permissions,0,3) }}"
+                                <check if="{{ @permissionLevel == @permissions }}">
+                                    selected = "selected"
+                                </check>
+                                >{{ @permissions }}
+                            </repeat>
+                        </select>
+                        <check if="{{ isset(@permission_err) }}">
+                            <label class="text-danger">{{ @permission_err }}</label>
+                        </check>
+                    </label>
+                    <br>
+                    <!-- /permission dropdown -->
+
+                    <!-- name -->
+                    <label>
+                        <input class="form-control" id="name" type="text" name="name" placeholder="Name"
+                               value="{{ @name }}">
+                        <check if="{{ isset(@name_err) }}">
+                            <label class="text-danger">{{ @name_err }}</label>
+                        </check>
+                    </label>
+                    <br>
+                    <!-- /name -->
+
+                    <br>
+                    <button class="btn btn-primary mb-4" type="submit" name="submit" value="Register">Register</button>
+                    <hr class="m-5">
+
+                </div>
+                <!-- /container div -->
+
+            </form>
     </div>
 
-    <!-- form -->
-    <form id="register" action="#" method="post" enctype="multipart/form-data">
-
-            <div class="form-group" align="center">
-
-
-                <!-- username -->
-                <label>
-                    <input class="form-control" id="username" type="text" name="username" placeholder="Username"
-                           value="{{ @username }}">
-                    <check if="{{ isset(@username_err) }}">
-                        <label class="text-danger">{{ @username_err }}</label>
-                    </check>
-                </label>
-                <br>
-                <!-- /username -->
-
-                <!-- password -->
-                <label>
-                    <input class="form-control" id="password" type="password" name="password"
-                           placeholder="Password">
-                    <check if="{{ isset(@password_err) }}">
-                        <label class="text-danger">{{ @password_err }}</label>
-                    </check>
-                </label>
-                <br>
-                <!-- /password -->
-
-                <!-- confirm password -->
-                <label>
-                    <input class="form-control" id="confirm_password" type="password" name="confirm_password"
-                           placeholder="Confirm Password">
-                    <check if="{{ isset(@confirm_password_err) }}">
-                        <label class="text-danger">{{ @confirm_password_err }}</label>
-                    </check>
-                </label>
-                <br>
-                <!-- /confirm password -->
-
-                <!-- permission dropdown -->
-                <label>
-                    <select name="permission" id="permission" class="form-control">
-                        <repeat group="{{ @permission }}" value="{{ @permissions }}">
-                            <option value="{{ substr(@permissions,0,3) }}"
-                            <check if="{{ @permissionLevel == @permissions }}">
-                                selected = "selected"
-                            </check>
-                            >{{ @permissions }}
-                        </repeat>
-                    </select>
-                    <check if="{{ isset(@permission_err) }}">
-                        <label class="text-danger">{{ @permission_err }}</label>
-                    </check>
-                </label>
-                <br>
-                <!-- /permission dropdown -->
-
-                <!-- name -->
-                <label>
-                    <input class="form-control" id="name" type="text" name="name" placeholder="Name"
-                           value="{{ @name }}">
-                    <check if="{{ isset(@name_err) }}">
-                        <label class="text-danger">{{ @name_err }}</label>
-                    </check>
-                </label>
-                <br>
-                <!-- /name -->
-
-                <br>
-                <button class="btn btn-primary mb-4" type="submit" name="submit" value="Register">Register</button>
-                <hr class="m-5">
-
-            </div>
-            <!-- /container div -->
-
-    </form>
-    <!-- /form -->
-</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

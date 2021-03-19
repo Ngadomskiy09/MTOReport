@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link href="https://cdn.quilljs.com/1.1.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+    <title>Home - MTO Report</title>
+</head>
+<body>
+
+    <div class="container contact-form">
+        <include href="views/header.html">
+        <form method="post" id="myform">
+            <h3><strong>MTO Report</strong></h3>
+            <repeat group="{{ @seqnotes}}" value="{{ @seqInfo}}">
+                <div class="container mtogroup">
+                        <label class="col-sm-3 form-group"><strong>Seq#</strong>
+                            <input type="text" data-input="3" class="saveInfo form-control shorten" data-column="seq_num" maxlength="5" value="{{@seqInfo['seq_num']}}" name="seqNum" readonly>
+                        </label>
+
+                        <label><strong>MTO Status: </strong>
+                            <select class="form-control form-group saveInfo" data-column="tooling_mto_status" data-input="2" disabled>
+                                <repeat group="{{@mtostat}}" value="{{@mto}}">
+                                    <option value="{{@mto}}"
+                                    <check if="{{@seqInfo['tooling_mto_status'] === @mto}}">selected</check>> {{@mto}} </option>
+                                </repeat>
+                            </select>
+                        </label>
+
+                        <label for="rpmran{{@sequence['tooling_sequence_id']}}" class="form-group"><strong>F/R and RPM ran @100%</strong>
+                            <input type="checkbox" data-input="1" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo" disabled>
+                            <check if="{{@sequence['fr_rpm_100'] == 1}}">checked</check>
+                        </label>
+                        <br>
+
+                        <label class="col-sm-12"><strong>MTO Comments: </strong>
+                            <textarea  data-input="0" name="mtocomments" data-column="mto_comments" class="saveInfo form-control" rows="5" maxlength="5000" readonly>{{@seqInfo['mto_comments']}}</textarea>
+                        </label>
+                    <hr>
+                </div>
+            </repeat>
+            <input type="button" class="btn btn-primary btn-block" value="Print this page" onClick="window.print()">
+        </form>
+    </div>
+
+
+
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="../controller/formFunctions.js"></script>
+    <script src="../jsDirectory/formPermissions.js"></script>
+
+
+</body>
+</html>
+

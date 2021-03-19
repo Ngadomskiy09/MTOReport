@@ -20,30 +20,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark display-7">
-    <ul class="navbar-nav mr-auto mr-2 mt-lg-0">
-        <li>
-            <!--<a class="nav-link text-left" href="https://klow.greenriverdev.com/355/NC-Document-Online/data">Form Database</a>-->
-            <a class="nav-link text-left" href="/">Form Database</a>
-        </li>
-
-        <li>
-            <!--            <a class="nav-link text-left" href="https://klow.greenriverdev.com/355/NC-Document-Online/data">Form Database</a>-->
-            <a class="nav-link text-left" href="/login">Login</a>
-        </li>
-    </ul>
-</nav>
-
-<div class="container main">
-    <div class="jumbotron" style="text-align: center">
-        <span class="head">MTO Report Data</span>
-        <p class="lead">MTO Document</p>
-    </div>
-</div>
-
-
 <div class="container main" style="background: white">
-    <div>
+    <include href="views/header.html">
+    <div class="createNew">
         <a href="home/0" type="button" id="createNewReport" class="btn btn-primary" style="float: right">Create New Report</a>
     </div>
     <h3>Form Data</h3>
@@ -52,7 +31,6 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Operators</th>
                     <th>Programmer</th>
                     <th>Model</th>
                     <th>FWC</th>
@@ -83,7 +61,6 @@
                     <tr>
 
                         <td><a href="home/{{ @info['formID'] }}"><button type="button" class="btn btn-primary">View #{{ @info['formID'] }}</button></a></td>
-                        <td> <button data-id="{{@info['formID']}}" class="btn btn-secondary btn-sm opData">show info</button></td>
                         <td>{{ @info['Programmer'] }}</td>
                         <td>{{ @info['Model'] }}</td>
                         <td>{{ @info['FWC'] }}</td>

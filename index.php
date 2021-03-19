@@ -77,5 +77,11 @@ $f3->route('GET|POST /register', function () {
     $GLOBALS['routes']->register();
 });
 
+$f3->route('GET|POST /mtoreport/@id', function ($f3, $params) {
+    $id = $params["id"];
+    $_SESSION["formID"] = $id;
+    $GLOBALS['routes']->mtoreport($id);
+});
+
 //run fat free
 $f3->run();
