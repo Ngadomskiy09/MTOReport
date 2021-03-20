@@ -143,7 +143,7 @@
 
         <!--Textarea for user to place notes-->
         <label class="col-sm-12" for="Pnotes" ><strong>Programmers Notes: </strong>
-            <div class="editor">
+            <div class="editor" id="Pnotesdiv">
                 <textarea id="Pnotes" name="Pnotes" rows="5" maxlength="50000" class="form-control" placeholder="...">{{@Pnotes}}</textarea>
             </div>
         </label>
@@ -221,7 +221,7 @@
 
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
-                <div class="editor">
+                <div class="editor" id="Onotesdiv">
                     <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
                 </div>
             </label>
@@ -255,7 +255,7 @@
 
             <!--Textarea for user to place notes-->
             <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
-                <div class="editor">
+                <div class="editor" id="Lnotesdiv">
                     <textarea id="Lnotes" name="Lnotes" rows="5" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
                 </div>
             </label>
@@ -284,7 +284,7 @@
         <h4 class="text-lg-center"><strong>Sequence Table</strong></h4>
 
         <!--Hidden sequence block that appears only when programmer wants to add more sequences-->
-        <div class="all-sequences form-group border p-3" data-formid="{{@SESSION.formID}}">
+        <div class="all-sequences form-group border p-3">
             <repeat group="{{@sequences}}" value="{{@sequence}}">
                 <div class="block" data-id = "{{@sequence['tooling_sequence_id']}}">
 
@@ -309,15 +309,15 @@
                             <br>
 
                             <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
-                                <div class="editor">
-                                    <textarea data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" name="mtocomments" data-column="mto_comments" rows="3" maxlength="2000" class="saveInfo form-control" placeholder="...">{{@sequence['mto_comments']}}</textarea>
+                                <div class="editor saveInfo form-control" data-column="mto_comments" data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" >
+                                    <textarea name="mtocomments"  rows="3" maxlength="2000" placeholder="...">{{@sequence['mto_comments']}}</textarea>
                                 </div>
                             </label>
                         </div>
 
                     <br>
                     <br>
-
+                        <div>
                         <div>
                             <label><strong>MTO Status: </strong>
                                 <select class="form-control saveInfo" data-column="tooling_mto_status" data-input="2">
@@ -332,9 +332,12 @@
                             <br>
 
                             <label for="rpmran{{@sequence['tooling_sequence_id']}}">F/R and RPM ran @100%
-                                <input type="checkbox" data-input="1" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo">
+                                <input type="checkbox" data-input="1" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo"
                                 <check if="{{@sequence['fr_rpm_100'] == 1}}">checked</check>
+                                >
                             </label>
+                        </div>
+
                         </div>
 
                         <hr>

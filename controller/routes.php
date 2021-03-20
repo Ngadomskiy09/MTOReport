@@ -245,6 +245,7 @@ class Routes
             $views = new Template();
             echo $views->render('views/home.html');
 
+
         }
 
         else {
@@ -255,7 +256,6 @@ class Routes
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($id !== 0) {
-
             $_SESSION['info'] = new formData ($_POST['programmer'], $_POST['assy'], $_POST['model'], $_POST['fwc'],
                 $_POST['media'], $_POST['program'], $_POST['make'], $_POST['date'],
                 $_POST['ptime'], $_POST['ptype'], $_POST['status'], $_POST['reason'],
@@ -264,7 +264,6 @@ class Routes
                 $_POST['sigdate'], $_POST['Lnotes'], $_POST['sig2'], $_POST['sig2date']);
 
             $this->_dbh->DataUpdate($id);
-            $this->_dbh->setFirstPartMtoRun($id);
 
             $this->_f3->reroute('/');
             }
@@ -308,12 +307,14 @@ class Routes
                             </label>
     
                         <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
-                            <textarea id=\"mtocomments$value\" data-input=\"0\" data-column=\"mto_comments\" name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" class=\"saveInfo form-control\" placeholder=\"...\"></textarea>
+                             <div class=\"editor saveInfo form-control\" data-column=\"mto_comments\" data-input=\"0\" id=\"mtocomments$value\" >
+                            <textarea   name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" placeholder=\"...\"></textarea>
+                            </div>
                         </label>
                      </div>
 
                     <label for=\"rpmran$value\">F/R and RPM ran @100%
-                        <input class=\"saveInfo\" data-input=\"1\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"rpmran\">
+                        <input class=\"saveInfo\" data-input=\"1\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"checkbox\">
                     </label>
 
                     <label><strong>MTO Status: </strong>
@@ -326,7 +327,7 @@ class Routes
                     </label>
                    
 
-                    <input type=\"file\" id=\"image\" name=\"image\" data-column=\"file_url\">
+                    <input class='col-sm-12' type=\"file\" id=\"image\" name=\"image\" data-column=\"file_url\" data-seqid=\"$value\" data-formId=\"".$_POST['formID']."\">
                     <hr> 
                 </div>
             </div>";
@@ -375,5 +376,9 @@ class Routes
         $this->_f3->set("seqnotes", $value);
         $views = new Template();
         echo $views->render("views/mtoreport.html");
+    }
+
+    function savetext () {
+        $this->_dbh->dbsavetext($_POST["lnotes"], $_POST["pnotes"], $_POST['onotes'], $_POST["id"]);
     }
 }

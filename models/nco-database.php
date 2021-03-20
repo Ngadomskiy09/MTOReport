@@ -113,18 +113,18 @@ class Database
         $sql = "UPDATE mto.Test SET Programmer = ?, Assy = ?, Model = ?, FWC = ?, Media = ?, 
                 Program_number = ?, Used_to_make = ?, Program_Date = ?, Program_Time = ?, 
                 Program_type = ?, Part_Status = ?, Rev_reason = ?,  
-                Prev_buy_off = ?, Programmers_instructions = ?, programmers_notes = ?,
-                Milling_proc = ?, operators_notes = ?, Geometry = ?, Signature = ?, 
-                Layout_Date = ?, Layout_notes = ?, 
+                Prev_buy_off = ?, Programmers_instructions = ?, 
+                Milling_proc = ?,  Geometry = ?, Signature = ?, 
+                Layout_Date = ?,  
                 Shop_signature = ?, Shop_Date = ? WHERE formID = ?";
 
         $statement = $this->_dbh->prepare($sql);
 
         $statement->execute([$dataObj->getProgrammer(), $dataObj->getAssy(), $dataObj->getModel(), $dataObj->getFwc(), $dataObj->getMedia(),
             $dataObj->getProgram(), $dataObj->getMake(), $dataObj->getDate(), $dataObj->getPtime(), $dataObj->getPtype(), $dataObj->getStatus(),
-            $dataObj->getReason(), $dataObj->getBuyoff(), $dataObj->getInstruction(), $dataObj->getPnotes(),
-            $dataObj->getProcess(), $dataObj->getOnotes(), $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
-            $dataObj->getLnotes(), $dataObj->getSig2(), $dataObj->getSig2date(), $formID]);
+            $dataObj->getReason(), $dataObj->getBuyoff(), $dataObj->getInstruction(),
+            $dataObj->getProcess(),  $dataObj->getGeometry(), $dataObj->getSignature(), $dataObj->getSigdate(),
+             $dataObj->getSig2(), $dataObj->getSig2date(), $formID]);
 
         $this->setFirstPartMtoRun($_SESSION['formID']);
     }
@@ -185,7 +185,7 @@ class Database
     }
 
     function getMtoreport($formID) {
-        $sql = "SELECT seq_num, mto_comments, tooling_mto_status FROM mto.Tooling_sequence WHERE formID = ?";
+        $sql = "SELECT seq_num, mto_comments, tooling_mto_status,fr_rpm_100 FROM mto.Tooling_sequence WHERE formID = ?";
 
         $statement = $this->_dbh->prepare($sql);
 
@@ -287,6 +287,20 @@ class Database
 
         // execute statement
         $statement->execute([$username, password_hash($password, PASSWORD_DEFAULT), $permission, $name]);
+
+        // nothing to return
+    }
+
+    function dbsavetext($lnotes, $pnotes, $onotes, $formID)
+    {
+        // prepare sql statement
+        $sql = "UPDATE mto.Test SET programmers_notes = ?, operators_notes = ?, layout_notes = ? WHERE formID = ?;";
+
+        // prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        // execute statement
+        $statement->execute([$pnotes, $onotes, $lnotes, $formID]);
 
         // nothing to return
     }

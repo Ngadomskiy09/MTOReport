@@ -106,8 +106,7 @@ $(document).ready(function () {
 
 // shows the sequence block field and adds additional block fields when add button is clicked
 $("#addsequence").on("click", function () {
-    let Fid = $(".all-sequences").data("formid");
-    console.log(Fid);
+    let Fid = $("#vip").data("vip");
 
     if ($(".all-sequences div").last().length === 0)
     {
@@ -116,6 +115,7 @@ $("#addsequence").on("click", function () {
             formID: Fid
         }).done(function(data){
             $(".all-sequences").append(data);
+            textarea();
         })
     }
     else{
@@ -125,6 +125,7 @@ $("#addsequence").on("click", function () {
              formID: Fid
         }).done(function(data){
             $(".all-sequences").append(data);
+            textarea();
         })
     }
 
@@ -133,7 +134,7 @@ $("#addsequence").on("click", function () {
 
 // removes a sequence block field when the remove button is pushed
 $("#removesequence").on("click", function () {
-    let Fid = $(".all-sequences").data("formid");
+    let Fid = $("#vip").data("vip");
     let id = $(".all-sequences .block").last().data('id');
     $.post('../deleteSeq',{
         value: id,
@@ -148,10 +149,16 @@ $("body").on("blur", ".saveInfo", function () {
    let col = $(this).data("column");
    let org = $(this).data("input");
    let formId = $("#vip").data("vip");
-   let seqId = $(this).parents(':eq(3)').data("id");
-   let toolSeqValue = $(this).val();
+   let seqId = typeof($(this).parents(':eq(3)').data("id")) === 'undefined' ? $(this).parents(':eq(2)').data("id") : $(this).parents(':eq(3)').data("id");
+   let toolSeqValue = "";
+   if($(this).val() === "" && $(this).text() !== ""){
+       toolSeqValue = $(this).text();
+   }
+   else{
+       toolSeqValue = $(this).val();
+   }
 
-   if($(this).val().trim() !== ""){
+   if(toolSeqValue.trim() !== ""){
        if(typeof arr[seqId] === 'undefined' ){
            arr[seqId] = [];
        }
@@ -168,6 +175,7 @@ $("body").on("blur", ".saveInfo", function () {
        }
 
        arr[seqId][org] =[formId, seqId, col, toolSeqValue];
+       console.log(arr);
    }
 
 });
@@ -224,5 +232,14 @@ function textarea() {
     }
 }
 
+function saveText() {
+    var lnotes = $("#Lnotesdiv").text();
+    var pnotes = $("#Pnotesdiv").text();
+    var onotes = $("#Onotesdiv").text();
+    $.post("/savetext", {lnotes : lnotes, pnotes : pnotes, onotes : onotes, id : $("#vip").data("vip") });
+}
 
+$("#next").on("click", function () {
+    saveText();
+});
 

@@ -83,5 +83,9 @@ $f3->route('GET|POST /mtoreport/@id', function ($f3, $params) {
     $GLOBALS['routes']->mtoreport($id);
 });
 
+$f3->route('POST /savetext', function () {
+    $GLOBALS['routes']->savetext();
+});
+
 //run fat free
 $f3->run();
