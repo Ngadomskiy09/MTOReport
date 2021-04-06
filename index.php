@@ -21,7 +21,7 @@ $f3->set('DEBUG', 3);
 
 // array setup
 $f3->set('stat', array('', 'Marginal', 'No buy-off', 'Needs L/O re-check', 'Layout in work','Waiting for Team Lead signature', 'PRO', 'Work in Progress'));
-$f3->set('reasons', array('', 'Improvement', 'change', 'SAT'));
+$f3->set('reasons', array('', 'New Program', 'Improvement File', 'Eng. Change', 'SAT'));
 $f3->set('buyoffs', array('', 'Yes', 'No', 'Marginal (L/O)', 'Marginal (Shop)', 'N/A'));
 $f3->set('instructions', array('', 'Programmer presence required', 'Team Lead presence required'));
 $f3->set('shifts', array('', '1', '2', '3'));

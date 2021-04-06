@@ -297,14 +297,19 @@ class Routes
         $value = $_POST['value'];
         $this->_dbh->setToolingSequence($_POST['formID'],$value);
         echo "<div class=\"block\" data-id = \"$value\">
-                <div>
-                <h2>Sequence #$value</h2>
-                
-           
+                <div>      
                     <div class=\"row\">
-                            <label class=\"col-sm-3\" for=\"seq$value\">Seq#
-                                <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control shorten\" data-column=\"seq_num\" maxlength=\"5\" id=\"seq$value\" name=\"seqNum\">
+                            <label class=\"col-sm-3\" for=\"seq$value\" style=\"font-size: xx-large; font-weight: bold\"><strong>Seq#</strong>
+                                <input type=\"text\" data-input=\"3\" class=\"saveInfo form-control\" data-column=\"seq_num\" maxlength=\"5\" id=\"seq$value\" name=\"seqNum\">
                             </label>
+                            
+                            <br>
+                            <br>
+                            
+                            <input class='col-sm-12' type=\"file\" id=\"image\" name=\"image\" data-column=\"file_url\" data-seqid=\"$value\" data-formId=\"".$_POST['formID']."\">
+    
+                            <br>
+                            <br>
     
                         <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
                              <div class=\"editor saveInfo form-control\" data-column=\"mto_comments\" data-input=\"0\" id=\"mtocomments$value\" >
@@ -313,9 +318,8 @@ class Routes
                         </label>
                      </div>
 
-                    <label for=\"rpmran$value\">F/R and RPM ran @100%
-                        <input class=\"saveInfo\" data-input=\"1\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"checkbox\">
-                    </label>
+                     <br>
+                     <br>
 
                     <label><strong>MTO Status: </strong>
                         <select  class=\"form-control saveInfo\" data-column=\"tooling_mto_status\" data-input=\"2\">";
@@ -325,9 +329,11 @@ class Routes
 
                         echo "</select>
                     </label>
+                    
+                    <label for=\"rpmran$value\">F/R and RPM ran @100%
+                        <input class=\"saveInfo\" data-input=\"1\" type=\"checkbox\" id=\"rpmran$value\" data-column=\"fr_rpm_100\" name=\"rpmran\" value=\"checkbox\">
+                    </label>
                    
-
-                    <input class='col-sm-12' type=\"file\" id=\"image\" name=\"image\" data-column=\"file_url\" data-seqid=\"$value\" data-formId=\"".$_POST['formID']."\">
                     <hr> 
                 </div>
             </div>";

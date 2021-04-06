@@ -53,6 +53,7 @@ CREATE TABLE mto.Tooling_sequence (
   tooling_mto_status VARCHAR(45) NULL,
   file_url VARCHAR(255) NULL,
   seq_num INT(7) NULL,
+  date_created DATETIME NOT NULL DEFAULT (GETDATE()),
   INDEX fk_tooling_sequence_copy1_formID1_idx (formID ASC),
   CONSTRAINT fk_tooling_sequence_copy1_formID1
     FOREIGN KEY (formID)

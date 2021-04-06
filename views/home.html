@@ -290,7 +290,7 @@
 
                         <div class="row">
                            <div>
-                                <label class="sq col-sm-3" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
+                                <label class="sq col-sm-10" for="seq{{@sequence['tooling_sequence_id']}}"><strong>Seq#</strong>
                                     <input type="text" data-input="3" class="saveInfo form-control shorten seq" data-column="seq_num" maxlength="5" id="seq{{@sequence['tooling_sequence_id']}}" value="{{@sequence['seq_num']}}" name="seqNum">
                                 </label>
 
@@ -309,13 +309,12 @@
                             <br>
 
                             <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
-                                <div class="editor saveInfo form-control" data-column="mto_comments" data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" >
+                                <div class="saveInfo form-control" data-column="mto_comments" data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" >
                                     <textarea name="mtocomments"  rows="3" maxlength="2000" placeholder="...">{{@sequence['mto_comments']}}</textarea>
                                 </div>
                             </label>
                         </div>
 
-                    <br>
                     <br>
                         <div>
                         <div>
@@ -337,7 +336,6 @@
                                 >
                             </label>
                         </div>
-
                         </div>
 
                         <hr>
