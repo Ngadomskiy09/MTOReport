@@ -115,7 +115,6 @@ $("#addsequence").on("click", function () {
             formID: Fid
         }).done(function(data){
             $(".all-sequences").append(data);
-            textarea();
         })
     }
     else{
@@ -125,7 +124,6 @@ $("#addsequence").on("click", function () {
              formID: Fid
         }).done(function(data){
             $(".all-sequences").append(data);
-            textarea();
         })
     }
 

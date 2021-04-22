@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'f57704b456aa25e6a0ce21129f966f319011a692',
+    'reference' => '6be81610e505ec45cbb6a1f008e1a22c99222cde',
     'name' => 'davidkislyak/localdungeons',
   ),
   'versions' => 
@@ -28,7 +28,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'f57704b456aa25e6a0ce21129f966f319011a692',
+      'reference' => '6be81610e505ec45cbb6a1f008e1a22c99222cde',
     ),
   ),
 );

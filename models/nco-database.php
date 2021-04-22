@@ -185,7 +185,7 @@ class Database
     }
 
     function getMtoreport($formID) {
-        $sql = "SELECT seq_num, mto_comments, tooling_mto_status,fr_rpm_100, date_crreated FROM mto.Tooling_sequence WHERE formID = ?";
+        $sql = "SELECT seq_num, mto_comments, tooling_mto_status,fr_rpm_100, date_created FROM mto.Tooling_sequence WHERE formID = ?";
 
         $statement = $this->_dbh->prepare($sql);
 

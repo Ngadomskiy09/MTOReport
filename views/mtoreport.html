@@ -29,7 +29,7 @@
                         </label>
 
                         <label><strong>MTO Status: </strong>
-                            <select class="form-control form-group saveInfo" data-column="tooling_mto_status" data-input="2" disabled>
+                            <select class="form-control form-group saveInfo" disabled>
                                 <repeat group="{{@mtostat}}" value="{{@mto}}">
                                     <option value="{{@mto}}"
                                     <check if="{{@seqInfo['tooling_mto_status'] === @mto}}">selected</check>> {{@mto}} </option>
@@ -38,13 +38,17 @@
                         </label>
 
                         <label for="rpmran{{@sequence['tooling_sequence_id']}}" class="form-group"><strong>F/R and RPM ran @100%</strong>
-                            <input type="checkbox" data-input="1" id="rpmran{{@sequence['tooling_sequence_id']}}" data-column="fr_rpm_100" name="rpmran" value="checkbox" class="saveInfo" disabled
+                            <input type="checkbox" id="rpmran{{@sequence['tooling_sequence_id']}}" name="rpmran" value="checkbox" class="saveInfo" disabled
                             <check if="{{@seqInfo['fr_rpm_100'] == 1}}">checked</check>>
+                        </label>
+
+                        <label for="date_created{{@sequence['tooling_sequence_id']}}" class="form-group"><strong>Date Created:</strong>
+                            <input id="date_created{{@sequence['tooling_sequence_id']}}" name="date_created" class="saveInfo form-control shorten" value="{{@seqInfo['date_created']}}" disabled>
                         </label>
                         <br>
 
                         <label class="col-sm-12"><strong>MTO Comments: </strong>
-                            <textarea  data-input="0" name="mtocomments" data-column="mto_comments" class="saveInfo form-control" rows="5" maxlength="5000" readonly>{{@seqInfo['mto_comments']}}</textarea>
+                            <textarea name="mtocomments" class="saveInfo form-control" rows="5" maxlength="5000" readonly>{{@seqInfo['mto_comments']}}</textarea>
                         </label>
                     <hr>
                 </div>

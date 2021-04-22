@@ -17,8 +17,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install zip \
     && docker-php-source delete
+
 #intalling composer npm, other stuff
 RUN apt-get install -y openssl zip unzip git npm
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+#Set timezone depen
+FROM mysql:5.7.21
+RUN echo "USE mysql;" > /docker-entrypoint-initdb.d/timezones.sql &&  mysql_tzinfo_to_sql /usr/share/zoneinfo >> /docker-entrypoint-initdb.d/timezones.sql
 #start apache
 CMD /usr/sbin/apache2ctl -D FOREGROUND

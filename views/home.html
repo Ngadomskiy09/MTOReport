@@ -21,6 +21,8 @@
 
 <form id="info" action="#" method="post" enctype="multipart/form-data">
 <div class="container main">
+    <fieldset
+    <check if = "{{@disableForm === true && @SESSION.loggedin !== true}}"> disabled </check>>
     <include href="views/header.html">
     <div class="form-group" id="heading">
         <!--Input Values to start the form-->
@@ -266,11 +268,13 @@
 
         <div class="shop">
             <label class="col-sm-auto" for="sig2"><strong>Signature: </strong>
-                <input id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}">
+                <input id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}"
+                <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
             </label>
 
             <label class="col-sm-auto" for="sig2date"><strong>Date: </strong>
-                <input id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}">
+                <input id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}"
+                <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
             </label>
 
             <label class="col-sm-auto" for="email">
@@ -309,9 +313,10 @@
                             <br>
 
                             <label class="col-sm-12" for="mtocomments{{@sequence['tooling_sequence_id']}}"><strong>MTO Comments: </strong>
-                                <div class="saveInfo form-control" data-column="mto_comments" data-input="0" id="mtocomments{{@sequence['tooling_sequence_id']}}" >
-                                    <textarea name="mtocomments"  rows="3" maxlength="2000" placeholder="...">{{@sequence['mto_comments']}}</textarea>
-                                </div>
+
+                                    <textarea name="mtocomments"  rows="3" maxlength="2000" placeholder="..." class=" saveInfo form-control" data-column="mto_comments" data-input="0"
+                                              id="mtocomments{{@sequence['tooling_sequence_id']}}"> {{@sequence['mto_comments']}}</textarea>
+
                             </label>
                         </div>
 
@@ -352,6 +357,7 @@
     <br>
         <div>
         <button type="submit" class="btn btn-primary btn-lg col-sm-9" value="next" id="next">Save</button>
+    </fieldset>
         <a href="/mtoreport/{{@SESSION.formID}}"><button id="mtoreport" type="button" class="btn btn-primary btn-lg col-sm-2"
                                                              name="mtoreport" value="mtoreport">MTO Report</button></a>
         </div>

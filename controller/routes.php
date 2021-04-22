@@ -66,7 +66,7 @@ class Routes
                         $_SESSION['name'] = $result['name'];
 
                         // reroute to /data
-                        $this->_f3->reroute('/data');
+                        $this->_f3->reroute('/');
 
                     } else {
                         // password is not valid
@@ -205,6 +205,7 @@ class Routes
 
             $grab = $this->_dbh->getUpdate($id);
             $grab = $grab[0];
+            $readonly = false;
 
             // Add Data to hive
             $this->_f3->set('sequences',$this->_dbh->showSequence($id));
@@ -241,6 +242,11 @@ class Routes
             $this->_f3->set('sig2', $grab['Shop_signature']);
             $this->_f3->set('sig2date', $grab['Shop_Date']);
             $this->_f3->set('process', $grab['Milling_proc']);
+
+            if(isset($grab['Shop_signature']) && isset($grab['Shop_Date'])) {
+                $readonly = true;
+            }
+            $this->_f3->set('disableForm', $readonly);
 
             $views = new Template();
             echo $views->render('views/home.html');
@@ -312,7 +318,7 @@ class Routes
                             <br>
     
                         <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
-                             <div class=\"editor saveInfo form-control\" data-column=\"mto_comments\" data-input=\"0\" id=\"mtocomments$value\" >
+                             <div class=\" saveInfo form-control\" data-column=\"mto_comments\" data-input=\"0\" id=\"mtocomments$value\" >
                             <textarea   name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" placeholder=\"...\"></textarea>
                             </div>
                         </label>
