@@ -33,7 +33,7 @@ CREATE TABLE mto.First_part_mto_run (
   operators_name VARCHAR(64) NULL,
   date DATE NULL,
   p_o_num INT NULL,
-  machine INT NULL,
+  machine VARCHAR NULL,
   shift TINYINT(3) NULL,
   seq_from_to VARCHAR(45) NULL,
   PRIMARY KEY (first_part_mto_run_id),

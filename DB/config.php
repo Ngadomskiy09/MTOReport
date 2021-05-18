@@ -1,6 +1,6 @@
 <?php
 
-'mysql' => [
+/*'mysql' => [
     'driver' => 'mysql',
     'host' => env('DB_HOST', 'remotemysql.com'),
     'port' => env('DB_PORT', '3306'),
@@ -15,13 +15,14 @@
     'prefix_indexes' => true,
     'strict' => true,
     'engine' => null,
-];
+];*/
 
-/*
+
+
 define("DB_DSN", "mysql:host=database;dbname=mto");
 define("DB_USERNAME", "root");
 define("DB_PASSWORD", "password");
-*/
+
 
 /*
 define("DB_DSN", "mysql:dbname=ngadomsk_grc");

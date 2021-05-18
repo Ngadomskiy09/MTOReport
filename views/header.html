@@ -7,7 +7,15 @@
 
         <li>
             <!--            <a class="nav-link text-left" href="https://klow.greenriverdev.com/355/NC-Document-Online/data">Form Database</a>-->
-            <a class="nav-link text-left" href="/login">Login</a>
+            <check if = "{{@SESSION.loggedin !== true}}">
+                <true>
+                    <a class="nav-link text-left" href="/login">Login</a>
+                </true>
+                <false>
+                    <a class="nav-link text-left" href="../models/logout.php">Logout</a>
+                </false>
+                </check>
+
         </li>
     </ul>
 </nav>

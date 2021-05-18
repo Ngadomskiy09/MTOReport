@@ -38,7 +38,7 @@ $(document).ready(function(){
     $("#opInfo").html('');
     id = $('#vip').data('vip');
 
-    console.log(id);
+    //console.log(id);
     $.post('/getops',{
         id: id
     }).done(function(data) {
@@ -215,9 +215,10 @@ $("body").on("change","#image", function() {
 
 });
 
-$("body").on("change", "#delete", function() {
+$("#delete").on("click", function() {
+    var formID = document.querySelector('[data-formID]');
     $.post("../removeData", {
-        dataRemoval:$(this).data("formID")
+        dataRemoval:formID
     })
 });
 
@@ -240,4 +241,16 @@ function saveText() {
 $("#next").on("click", function () {
     saveText();
 });
+
+/*
+function deleterow() {
+    var row = $("#vip").data('vip');
+    $.post(" /removeData", {dataRemoval : row});
+}
+
+
+$("#delete").on("click", function () {
+    deleterow();
+});*/
+
 

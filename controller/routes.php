@@ -92,7 +92,11 @@ class Routes
     // handles adding users to the database
     function register()
     {
-
+        if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== true) {
+            // reroute to user login page
+            $this->_f3->reroute("/login");
+            exit;
+        }
 
         // process data after form is submitted
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -245,6 +249,7 @@ class Routes
 
             if(isset($grab['Shop_signature']) && isset($grab['Shop_Date'])) {
                 $readonly = true;
+
             }
             $this->_f3->set('disableForm', $readonly);
 
