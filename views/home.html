@@ -153,133 +153,143 @@
         <hr>
 
         <div class="form-group">
-            <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
-            <div>
-                <table id="opData" class="table hidden">
-                    <thead>
-                    <tr>
-                        <th>Operator Name</th>
-                        <th>Date</th>
-                        <th>PO Number</th>
-                        <th>Machine</th>
-                        <th>Shift</th>
-                        <th>Seq From - To</th>
-                    </tr>
-                    </thead>
-                    <tbody id="opInfo">
+            <button onclick="showOpSection()" class="btn btn-primary" style="display: block; margin: auto">Show Operators Section</button>
+            <div id="operatorSection" style="display: none">
+                <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
+                <div>
+                    <table id="opData" class="table hidden">
+                        <thead>
+                        <tr>
+                            <th>Operator Name</th>
+                            <th>Date</th>
+                            <th>PO Number</th>
+                            <th>Machine</th>
+                            <th>Shift</th>
+                            <th>Seq From - To</th>
+                        </tr>
+                        </thead>
+                        <tbody id="opInfo">
 
-                    </tbody>
-                </table>
-            </div>
-            <div id="ops">
-                    <label for="operator"><strong>Operator's Name: </strong>
-                        <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
-                    </label>
-
-                    <label for="date2"><strong>Run Date: </strong>
-                        <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
-                    </label>
-
-                    <label for="po"><strong>P/O #: </strong>
-                        <input id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
-                    </label>
-
-                    <label for="machine"><strong>Machine #: </strong>
-                        <input id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
-                    </label>
-
-                    <!--Dropdown values pulled from array of options-->
-                    <label><strong>Shift: </strong>
-                        <select id="shift" name="shift" class="form-control ope">
-                            <repeat group="{{ @shifts }}" value="{{ @shift }}">
-                                <option value="{{ @shift }}"
-                                        <check if="{{ @shi == @shift }}">
-                                            selected = "selected"
-                                        </check>
-                                >{{ @shift }}
-                            </repeat>
-                        </select>
-                    </label>
-
-                    <label for="seq"><strong>Seq. from/to: </strong>
-                        <input id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
-                    </label>
-            </div>
-
-            <hr>
-            <br>
-            <!--Dropdown values pulled from array of options-->
-            <label id="millPro"><strong>Milling Process acceptable? </strong>
-                <select name="process" class="form-control ope">
-                    <repeat group="{{ @processes }}" value="{{ @process }}">
-                        <option value="{{ @process }}"
-                                <check if="{{ @pro == @process }}">
-                                    selected = "selected"
-                                </check>
-                        >{{ @process }}</option>
-                    </repeat>
-                </select>
-            </label>
-
-            <!--Textarea for user to place notes-->
-            <label class="col-sm-12" for="Onotes" ><strong>Operator Notes: </strong>
-                <div class="editor" id="Onotesdiv">
-                    <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
+                        </tbody>
+                    </table>
                 </div>
-            </label>
-            <hr>
-            <br>
+                <div id="ops">
+                        <label for="operator"><strong>Operator's Name: </strong>
+                            <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
+                        </label>
 
-            <h3 class="text-lg-center"><strong>Layout First Part Check Report</strong></h3>
+                        <label for="date2"><strong>Run Date: </strong>
+                            <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
+                        </label>
 
-            <!--Dropdown values pulled from array of options-->
-            <label id="geo"><strong>Geometry acceptable? </strong>
-                <select name="geometry" class="form-control lay">
-                    <repeat group="{{ @geometrys }}" value="{{ @geometry }}">
-                        <option value="{{ @geometry }}"
-                                <check if="{{ @geo == @geometry }}">
-                                    selected = "selected"
-                                </check>
-                        >{{ @geometry }} </option>
-                    </repeat>
-                </select>
-            </label>
+                        <label for="po"><strong>P/O #: </strong>
+                            <input id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
+                        </label>
 
-            <span class="sig">
-                <label for="signature"><strong>Signature: </strong>
-                    <input id="signature" type="text" class="form-control lay" name="signature" value="{{ @signature}}">
+                        <label for="machine"><strong>Machine #: </strong>
+                            <input id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
+                        </label>
+
+                        <!--Dropdown values pulled from array of options-->
+                        <label><strong>Shift: </strong>
+                            <select id="shift" name="shift" class="form-control ope">
+                                <repeat group="{{ @shifts }}" value="{{ @shift }}">
+                                    <option value="{{ @shift }}"
+                                            <check if="{{ @shi == @shift }}">
+                                                selected = "selected"
+                                            </check>
+                                    >{{ @shift }}
+                                </repeat>
+                            </select>
+                        </label>
+
+                        <label for="seq"><strong>Seq. from/to: </strong>
+                            <input id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
+                        </label>
+                </div>
+
+                <hr>
+                <br>
+                <h3 class="text-lg-center"><strong>Shop Run Summary</strong></h3>
+                <!--Dropdown values pulled from array of options-->
+                <label id="millPro"><strong>Milling Process acceptable? </strong>
+                    <select name="process" class="form-control ope">
+                        <repeat group="{{ @processes }}" value="{{ @process }}">
+                            <option value="{{ @process }}"
+                                    <check if="{{ @pro == @process }}">
+                                        selected = "selected"
+                                    </check>
+                            >{{ @process }}</option>
+                        </repeat>
+                    </select>
                 </label>
 
-                <label for="sigdate"><strong>Date: </strong>
-                    <input id="sigdate" type="date" class="form-control lay" name="sigdate" value="{{ @sigdate}}">
+                <!--Textarea for user to place notes-->
+                <label class="col-sm-12" for="Onotes" ><strong>TeamLead Notes: </strong>
+                    <div class="editor" id="Onotesdiv">
+                        <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
+                    </div>
                 </label>
-            </span>
+            </div>
+            <hr>
+            <br>
 
-            <!--Textarea for user to place notes-->
-            <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
-                <div class="editor" id="Lnotesdiv">
-                    <textarea id="Lnotes" name="Lnotes" rows="5" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
-                </div>
-            </label>
+            <button onclick="showLayoutSection()" class="btn btn-primary" style="display: block; margin: auto">Show Layout Section</button>
+            <div id="layoutSection" style="display: none">
+                <h3 class="text-lg-center"><strong>Layout First Part Check Report</strong></h3>
+
+                <!--Dropdown values pulled from array of options-->
+                <label id="geo"><strong>Geometry acceptable? </strong>
+                    <select name="geometry" class="form-control lay">
+                        <repeat group="{{ @geometrys }}" value="{{ @geometry }}">
+                            <option value="{{ @geometry }}"
+                                    <check if="{{ @geo == @geometry }}">
+                                        selected = "selected"
+                                    </check>
+                            >{{ @geometry }} </option>
+                        </repeat>
+                    </select>
+                </label>
+
+                <span class="sig">
+                    <label for="signature"><strong>Signature: </strong>
+                        <input id="signature" type="text" class="form-control lay" name="signature" value="{{ @signature}}">
+                    </label>
+
+                    <label for="sigdate"><strong>Date: </strong>
+                        <input id="sigdate" type="date" class="form-control lay" name="sigdate" value="{{ @sigdate}}">
+                    </label>
+                </span>
+
+                <!--Textarea for user to place notes-->
+                <label class="col-sm-12" for="Lnotes" ><strong>LayOut Notes: </strong>
+                    <div class="editor" id="Lnotesdiv">
+                        <textarea id="Lnotes" name="Lnotes" rows="5" maxlength="50000" class="form-control lay" placeholder="...">{{@Lnotes}}</textarea>
+                    </div>
+                </label>
+            </div>
         </div>
         <hr>
 
-        <h3 class="text-lg-center"><strong>Shop Approval For Production</strong></h3>
+        <button onclick="showTeamLeadSection()" class="btn btn-primary" style="display: block; margin: auto">Show Team Lead Section</button>
+        <div id="tlSection" style="display: none">
+            <h3 class="text-lg-center"><strong>Shop Approval For Production</strong></h3>
 
-        <div class="shop">
-            <label class="col-sm-auto" for="sig2"><strong>Signature: </strong>
-                <input id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}"
-                <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
-            </label>
+            <div class="shop">
+                <label class="col-sm-auto" for="sig2"><strong>Signature: </strong>
+                    <input id="sig2" type="text" class="form-control tea" name="sig2" value="{{ @sig2}}"
+                    <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
+                </label>
 
-            <label class="col-sm-auto" for="sig2date"><strong>Date: </strong>
-                <input id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}"
-                <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
-            </label>
+                <label class="col-sm-auto" for="sig2date"><strong>Date: </strong>
+                    <input id="sig2date" type="date" class="form-control tea" name="sig2date" value="{{ @sig2date}}"
+                    <check if = "{{@SESSION.loggedin !== true}}"> disabled </check>>
+                </label>
 
-            <label class="col-sm-auto" for="email">
-                <button id="email" type="button" class="form-control btn-secondary" name="email" value="email">email</button>
-            </label>
+                <label class="col-sm-auto" for="email">
+                    <button id="email" type="button" class="form-control btn-secondary" name="email" value="email">email</button>
+                </label>
+            </div>
         </div>
 
         <hr>
@@ -320,7 +330,6 @@
                             </label>
                         </div>
 
-                    <br>
                         <div>
                         <div>
                             <label><strong>MTO Status: </strong>

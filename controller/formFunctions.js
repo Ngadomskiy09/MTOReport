@@ -242,15 +242,20 @@ $("#next").on("click", function () {
     saveText();
 });
 
-/*
-function deleterow() {
-    var row = $("#vip").data('vip');
-    $.post(" /removeData", {dataRemoval : row});
+function showOpSection() {
+    var ops = document.getElementById("operatorSection");
+    ops.style.display = "block";
 }
 
+function showLayoutSection() {
+    var layout = document.getElementById("layoutSection");
+    layout.style.display = "block";
+}
 
-$("#delete").on("click", function () {
-    deleterow();
-});*/
+function showTeamLeadSection() {
+    var tl = document.getElementById("tlSection");
+    tl.style.display = "block";
+}
+
 
 

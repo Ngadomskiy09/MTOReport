@@ -22,8 +22,16 @@
 <body>
 <div class="container main" style="background: white">
     <include href="views/header.html">
-    <div class="createNew">
-        <a href="home/0" type="button" id="createNewReport" class="btn btn-primary" style="float: right">Create New Report</a>
+    <div class="createNew" style="float: right">
+        <check if = "{{@SESSION.loggedin !== true}}">
+            <true>
+                <a href="../register" type="button" class="btn btn-danger" style="display: none">Register New Admin</a>
+            </true>
+            <false>
+                <a href="../register" type="button" id="registerNew" class="btn btn-danger">Register New Admin</a>
+            </false>
+        </check>
+        <a href="home/0" type="button" id="createNewReport" class="btn btn-primary">Create New Report</a>
     </div>
     <h3>Form Data</h3>
 

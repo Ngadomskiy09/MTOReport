@@ -323,9 +323,10 @@ class Routes
                             <br>
     
                         <label class=\"col-sm-12\" for=\"mtocomments$value\"><strong>MTO Comments: </strong>
-                             <div class=\" saveInfo form-control\" data-column=\"mto_comments\" data-input=\"0\" id=\"mtocomments$value\" >
-                            <textarea   name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" placeholder=\"...\"></textarea>
-                            </div>
+                            
+                            <textarea   name=\"mtocomments\" rows=\"3\" maxlength=\"2000\" placeholder=\"...\" class=\" saveInfo form-control\" data-column=\"mto_comments\"
+                                    data-input=\"0\" id=\"mtocomments$value\"></textarea>
+                            
                         </label>
                      </div>
 
