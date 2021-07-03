@@ -385,6 +385,7 @@ class Routes
 
     function removeData()
     {
+        var_dump($_POST);
         $this->_dbh->deleteFullForm($_POST['dataRemoval']);
     }
 

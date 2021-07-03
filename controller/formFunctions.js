@@ -215,11 +215,27 @@ $("body").on("change","#image", function() {
 
 });
 
-$("#delete").on("click", function() {
-    var formID = document.querySelector('[data-formID]');
-    $.post("../removeData", {
-        dataRemoval:formID
+$("body").on("click", "#delete", function() {
+    let formID = $(this).data("formid");
+    console.log(formID);
+    $.ajax({
+        url:"../removeData",
+        type:"post",
+        data: {dataRemoval : formID},
+        success : function () {location.reload()}
     })
+});
+
+$("#showOperatorsSection").on("click", function () {
+   showOpSection();
+});
+
+$("#showLayoutSection").on("click", function () {
+    showLayoutSection();
+});
+
+$("#showTeamLeadSection").on("click", function () {
+    showTeamLeadSection();
 });
 
 textarea();
