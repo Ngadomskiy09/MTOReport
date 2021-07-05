@@ -306,7 +306,6 @@ class Routes
 
     function SequenceBlock() {
         $value = $_POST['value'];
-        $this->_dbh->setToolingSequence($_POST['formID'],$value);
         echo "<div class=\"block\" data-id = \"$value\">
                 <div>      
                     <div class=\"row\">
@@ -359,17 +358,20 @@ class Routes
     function saveSeq()
     {
         // index 0: == form id, 1: == the sequence id, 2: == the column where the value goes, 3: == value entered
-        /**echo "<pre>";
+        echo "<pre>";
         var_dump($_POST);
-        echo "</pre>";**/
+        echo "</pre>";
+        if ($this->_dbh->getSingleToolingSequence($_POST["fId"],$_POST["id"]) <= 0 ) {
+            $this->_dbh->setToolingSequence($_POST["fId"],$_POST["id"]);
+        }
 
-        foreach ($_POST["toolSeqInfo"] as $column) {
-            if(!empty($column)){
-                foreach ($column as $seqInfo) {
-                    $this->_dbh->saveSequence($seqInfo[0], $seqInfo[1], $seqInfo[2], $seqInfo[3]);
+            foreach ($_POST["toolSeqInfo"] as $column) {
+                if (!empty($column)) {
+                    foreach ($column as $seqInfo) {
+                        $this->_dbh->saveSequence($seqInfo[0], $seqInfo[1], $seqInfo[2], $seqInfo[3]);
+                    }
                 }
             }
-        }
     }
 
     function saveSeqPic()

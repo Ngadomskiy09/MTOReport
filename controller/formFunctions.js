@@ -184,7 +184,7 @@ $("#save").on("click",function(){
     $.ajax({
         type: "POST",
         url: "/saveSeq",
-        data: {toolSeqInfo : arr}
+        data: {toolSeqInfo : arr, fId : $("#vip").data("vip"), id: $(".all-sequences .block").last().data('id')}
     });
 });
 

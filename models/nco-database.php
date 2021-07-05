@@ -142,6 +142,18 @@ class Database
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function getSingleToolingSequence($formId, $id)
+    {
+        $sql = "SELECT * FROM mto.Tooling_sequence
+                WHERE `formID` = ? AND tooling_sequence_id = ?";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->execute([$formId, $id]);
+
+        return $statement->rowCount();
+    }
+
     //This function sets the given information in the tooling sequence table
     function setToolingSequence($formID, $toolingSeqId)
     {
