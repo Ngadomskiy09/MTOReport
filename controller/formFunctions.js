@@ -260,17 +260,29 @@ $("#next").on("click", function () {
 
 function showOpSection() {
     var ops = document.getElementById("operatorSection");
-    ops.style.display = "block";
+    if (ops.style.display === "none") {
+        ops.style.display = "block";
+    } else {
+        ops.style.display = "none";
+    }
 }
 
 function showLayoutSection() {
     var layout = document.getElementById("layoutSection");
-    layout.style.display = "block";
+    if (layout.style.display === "none") {
+        layout.style.display = "block";
+    } else {
+        layout.style.display = "none";
+    }
 }
 
 function showTeamLeadSection() {
     var tl = document.getElementById("tlSection");
-    tl.style.display = "block";
+    if (tl.style.display === "none") {
+        tl.style.display = "block";
+    } else {
+        tl.style.display = "none";
+    }
 }
 
 

@@ -91,7 +91,16 @@
                         <td>{{ @info['layout_notes'] }}</td>
                         <td>{{ @info['Shop_signature'] }}</td>
                         <td>{{ @info['Shop_Date'] }}</td>
-                        <td><button type="button" id="delete" class="delete" data-formid="{{ @info['formID'] }}">Delete</button></td>
+                        <td>
+                            <check if = "{{@SESSION.loggedin === true}}">
+                                <true>
+                                    <button type="button" id="delete" class="delete btn btn-danger" data-formid="{{ @info['formID'] }}">Delete</button>
+                                </true>
+                                <false>
+                                    <button type="button" class="delete" style="display: none" data-formid="{{ @info['formID'] }}">Delete</button>
+                                </false>
+                            </check>
+                        </td>
 
                     </tr>
                 </repeat>
