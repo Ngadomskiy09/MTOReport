@@ -1,3 +1,4 @@
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -130,7 +131,7 @@ body{
     border-radius: 6rem;
     width: 11%;
     margin-top: 2%;
-    /*transform: rotate(29deg);*/
+
 }
 .contact-form form{
     padding-top: 20%;
@@ -183,5 +184,6 @@ nav {
 .createNew {
     margin-top: -7%;
 }
+
 
 

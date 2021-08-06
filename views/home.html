@@ -153,9 +153,44 @@
         <hr>
 
         <div class="form-group">
-            <button type="button" id="showOperatorsSection" class="btn btn-primary" style="display: block; margin: auto">Show/Hide Operators Section</button>
+            <button type="button" id="showOperatorsSection" class="btn btn-primary" style="display: block; margin: auto">***Start Here Show/Hide Operators Section***</button>
             <div id="operatorSection" style="display: none">
                 <h3 class="text-lg-center"><strong>First Part MTO Run</strong></h3>
+                <div id="ops">
+                    <label for="operator"><strong>Operator's Name: </strong>
+                        <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
+                    </label>
+
+                    <label for="date2"><strong>Run Date: </strong>
+                        <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
+                    </label>
+
+                    <label for="po"><strong>P/O #: </strong>
+                        <input id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
+                    </label>
+
+                    <label for="machine"><strong>Machine #: </strong>
+                        <input id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
+                    </label>
+
+                    <!--Dropdown values pulled from array of options-->
+                    <label><strong>Shift: </strong>
+                        <select id="shift" name="shift" class="form-control ope">
+                            <repeat group="{{ @shifts }}" value="{{ @shift }}">
+                                <option value="{{ @shift }}"
+                                <check if="{{ @shi == @shift }}">
+                                    selected = "selected"
+                                </check>
+                                >{{ @shift }}
+                            </repeat>
+                        </select>
+                    </label>
+
+                    <label for="seq"><strong>Seq. from/to: </strong>
+                        <input id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
+                    </label>
+                </div>
+
                 <div>
                     <table id="opData" class="table hidden">
                         <thead>
@@ -173,63 +208,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="ops">
-                        <label for="operator"><strong>Operator's Name: </strong>
-                            <input id="operator" type="text" class="form-control ope" name="operator" value="{{ @operator}}">
-                        </label>
-
-                        <label for="date2"><strong>Run Date: </strong>
-                            <input id="date2" type="date" class="form-control ope" name="date2" value="{{ @date2}}">
-                        </label>
-
-                        <label for="po"><strong>P/O #: </strong>
-                            <input id="po" type="text" class="form-control ope" name="po" value="{{ @po}}">
-                        </label>
-
-                        <label for="machine"><strong>Machine #: </strong>
-                            <input id="machine" type="text" class="form-control ope" name="machine" value="{{ @machine}}">
-                        </label>
-
-                        <!--Dropdown values pulled from array of options-->
-                        <label><strong>Shift: </strong>
-                            <select id="shift" name="shift" class="form-control ope">
-                                <repeat group="{{ @shifts }}" value="{{ @shift }}">
-                                    <option value="{{ @shift }}"
-                                            <check if="{{ @shi == @shift }}">
-                                                selected = "selected"
-                                            </check>
-                                    >{{ @shift }}
-                                </repeat>
-                            </select>
-                        </label>
-
-                        <label for="seq"><strong>Seq. from/to: </strong>
-                            <input id="seq" type="text" class="form-control ope" name="seq" value="{{ @seq}}">
-                        </label>
-                </div>
-
                 <hr>
                 <br>
-                <h3 class="text-lg-center"><strong>Shop Run Summary</strong></h3>
-                <!--Dropdown values pulled from array of options-->
-                <label id="millPro"><strong>Milling Process acceptable? </strong>
-                    <select name="process" class="form-control ope">
-                        <repeat group="{{ @processes }}" value="{{ @process }}">
-                            <option value="{{ @process }}"
-                                    <check if="{{ @pro == @process }}">
-                                        selected = "selected"
-                                    </check>
-                            >{{ @process }}</option>
-                        </repeat>
-                    </select>
-                </label>
-
-                <!--Textarea for user to place notes-->
-                <label class="col-sm-12" for="Onotes" ><strong>TeamLead Notes: </strong>
-                    <div class="editor" id="Onotesdiv">
-                        <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
-                    </div>
-                </label>
             </div>
             <hr>
             <br>
@@ -288,6 +268,27 @@
 
                 <label class="col-sm-auto" for="email">
                     <button id="email" type="button" class="form-control btn-secondary" name="email" value="email">email</button>
+                </label>
+
+                <h3 class="text-lg-center"><strong>Shop Run Summary</strong></h3>
+                <!--Dropdown values pulled from array of options-->
+                <label id="millPro"><strong>Milling Process acceptable? </strong>
+                    <select name="process" class="form-control ope">
+                        <repeat group="{{ @processes }}" value="{{ @process }}">
+                            <option value="{{ @process }}"
+                            <check if="{{ @pro == @process }}">
+                                selected = "selected"
+                            </check>
+                            >{{ @process }}</option>
+                        </repeat>
+                    </select>
+                </label>
+
+                <!--Textarea for user to place notes-->
+                <label class="col-sm-12" for="Onotes" ><strong>TeamLead Notes: </strong>
+                    <div class="editor" id="Onotesdiv">
+                        <textarea id="Onotes" name="Onotes" rows="5" maxlength="50000" class="form-control ope" placeholder="...">{{@Onotes}}</textarea>
+                    </div>
                 </label>
             </div>
         </div>
